@@ -1,0 +1,696 @@
+
+/* =====================================================
+   SIGET-VÍA — PORTAL DEL CLIENTE
+   PASO 172.8.2
+
+   Diseño profesional y adaptable
+   Transportes Vía S.A.C.
+
+   RF1  - Autenticación
+   RF3  - Consulta de viajes
+   RF4  - Reservas
+   RF10 - Selección de asientos
+   RF17 - Políticas del servicio
+   ===================================================== */
+
+/* =====================================================
+   1. CONTENEDOR PRINCIPAL
+   ===================================================== */
+
+.cliente-inicio {
+  --cliente-azul: #173b63;
+  --cliente-azul-oscuro: #102b48;
+  --cliente-azul-claro: #eef5fd;
+  --cliente-naranja: #f28c28;
+  --cliente-naranja-oscuro: #db7516;
+  --cliente-texto: #17324d;
+  --cliente-secundario: #718398;
+  --cliente-borde: #e2e9f1;
+
+  width: 100%;
+  min-height: 100%;
+  color: var(--cliente-texto);
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.cliente-inicio *,
+.cliente-inicio *::before,
+.cliente-inicio *::after {
+  box-sizing: border-box;
+}
+
+.cliente-inicio a {
+  text-decoration: none;
+}
+
+/* =====================================================
+   2. CABECERA DE BIENVENIDA
+   ===================================================== */
+
+.cliente-hero {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 28px;
+
+  width: 100%;
+  min-height: 250px;
+  padding: 36px 42px;
+
+  color: #fff;
+
+  background:
+    radial-gradient(
+      circle at 86% 18%,
+      rgba(255, 255, 255, 0.12),
+      transparent 30%
+    ),
+    linear-gradient(
+      115deg,
+      #102b48 0%,
+      #173b63 55%,
+      #28638e 100%
+    );
+
+  border-radius: 18px;
+  box-shadow: 0 8px 28px rgba(16, 43, 72, 0.12);
+}
+
+.cliente-hero::before {
+  content: '';
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  right: -110px;
+  top: -140px;
+
+  border: 45px solid rgba(255, 255, 255, 0.04);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.cliente-hero::after {
+  content: '';
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  right: 80px;
+  bottom: -150px;
+
+  border: 35px solid rgba(255, 255, 255, 0.04);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.cliente-hero-contenido {
+  position: relative;
+  z-index: 2;
+  max-width: 600px;
+}
+
+.cliente-hero-etiqueta {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+
+  padding: 7px 12px;
+
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 25px;
+
+  color: #deeffd;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.7px;
+}
+
+.cliente-hero h1 {
+  color: #fff;
+  font-size: clamp(25px, 3vw, 36px);
+  font-weight: 750;
+  line-height: 1.2;
+
+  margin: 17px 0 13px;
+}
+
+.cliente-hero p {
+  color: #deebf7;
+  font-size: 14px;
+  line-height: 1.8;
+  max-width: 470px;
+  margin: 0 0 23px;
+}
+
+.cliente-hero-icono {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 180px;
+  min-width: 180px;
+  height: 180px;
+
+  color: rgba(255, 255, 255, 0.85);
+
+  background: rgba(255, 255, 255, 0.09);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+}
+
+.cliente-hero-icono svg {
+  filter: drop-shadow(
+    0 6px 12px rgba(0, 0, 0, 0.13)
+  );
+}
+
+/* =====================================================
+   3. BOTÓN PRINCIPAL
+   ===================================================== */
+
+.cliente-boton-principal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  min-height: 47px;
+  padding: 12px 20px;
+
+  background: var(--cliente-naranja);
+  border: 1px solid transparent;
+  border-radius: 9px;
+
+  color: #fff !important;
+  font-size: 13px;
+  font-weight: 700;
+
+  box-shadow: 0 5px 15px rgba(242, 140, 40, 0.18);
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.cliente-boton-principal:hover {
+  background: var(--cliente-naranja-oscuro);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(242, 140, 40, 0.2);
+}
+
+.cliente-boton-principal:focus-visible {
+  outline: 3px solid #ffd495;
+  outline-offset: 3px;
+}
+
+/* =====================================================
+   4. SECCIONES
+   ===================================================== */
+
+.cliente-seccion {
+  margin-top: 34px;
+}
+
+.cliente-seccion-titulo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+
+  margin-bottom: 22px;
+}
+
+.cliente-seccion-titulo h2 {
+  margin: 0 0 7px;
+
+  font-size: 22px;
+  font-weight: 750;
+  color: var(--cliente-azul-oscuro);
+}
+
+.cliente-seccion-titulo p {
+  margin: 0;
+
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--cliente-secundario);
+}
+
+/* =====================================================
+   5. TARJETAS DE SERVICIOS
+   ===================================================== */
+
+.cliente-servicios {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.cliente-servicio {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  min-width: 0;
+  min-height: 238px;
+  padding: 24px 20px;
+
+  background: #fff;
+  border: 1px solid var(--cliente-borde);
+  border-radius: 13px;
+
+  box-shadow: 0 4px 18px rgba(24, 50, 76, 0.035);
+
+  color: var(--cliente-texto);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+a.cliente-servicio:hover {
+  transform: translateY(-4px);
+  border-color: #b7d1e8;
+  box-shadow: 0 10px 28px rgba(24, 50, 76, 0.1);
+}
+
+a.cliente-servicio:focus-visible {
+  outline: 3px solid #73aee0;
+  outline-offset: 3px;
+}
+
+.cliente-servicio-icono {
+  width: 55px;
+  height: 55px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 13px;
+  margin-bottom: 18px;
+}
+
+.cliente-servicio-icono.azul {
+  background: #e6f2fe;
+  color: #276fa7;
+}
+
+.cliente-servicio-icono.naranja {
+  background: #fff1e1;
+  color: #d78428;
+}
+
+.cliente-servicio-icono.verde {
+  background: #e6f6ed;
+  color: #25865a;
+}
+
+.cliente-servicio-icono.morado {
+  background: #f0ecfc;
+  color: #8060b5;
+}
+
+.cliente-servicio h3 {
+  margin: 0 0 11px;
+
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--cliente-azul-oscuro);
+}
+
+.cliente-servicio p {
+  margin: 0 0 20px;
+
+  color: var(--cliente-secundario);
+  font-size: 12px;
+  line-height: 1.75;
+}
+
+.cliente-servicio-enlace {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+
+  margin-top: auto;
+
+  color: #246b9e;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.cliente-servicio-enlace svg {
+  transition: transform 0.2s ease;
+}
+
+a.cliente-servicio:hover
+.cliente-servicio-enlace svg {
+  transform: translateX(4px);
+}
+
+/* FUNCIONES PENDIENTES */
+
+.cliente-servicio.pendiente {
+  background: #fcfdff;
+  cursor: default;
+}
+
+.cliente-proximamente {
+  display: inline-flex;
+  align-items: center;
+
+  margin-top: auto;
+  padding: 7px 10px;
+
+  background: #f0f3f6;
+  border: 1px solid #e4e9ef;
+  border-radius: 7px;
+
+  color: #8291a0;
+  font-size: 11px;
+  font-weight: 650;
+}
+
+/* =====================================================
+   6. PROCESO DE RESERVA
+   ===================================================== */
+
+.cliente-proceso {
+  margin-top: 35px;
+  padding: 27px;
+
+  background: #fff;
+  border: 1px solid var(--cliente-borde);
+  border-radius: 15px;
+
+  box-shadow: 0 4px 20px rgba(24, 50, 76, 0.035);
+}
+
+.cliente-proceso .cliente-seccion-titulo {
+  margin-bottom: 26px;
+}
+
+.cliente-pasos {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.cliente-paso {
+  position: relative;
+  min-width: 0;
+  min-height: 195px;
+
+  padding: 22px 17px;
+
+  background: #f6f9fc;
+  border: 1px solid #eaf0f5;
+  border-radius: 11px;
+
+  text-align: left;
+}
+
+.cliente-paso-numero {
+  position: absolute;
+  right: 15px;
+  top: 14px;
+
+  width: 28px;
+  height: 28px;
+
+  display: grid;
+  place-items: center;
+
+  color: #22699f;
+  background: #e3eef8;
+  border-radius: 50%;
+
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.cliente-paso > svg {
+  display: block;
+  margin: 9px 0 18px;
+
+  color: #2674ac;
+}
+
+.cliente-paso h3 {
+  margin: 0 0 11px;
+
+  color: #193c5c;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.cliente-paso p {
+  margin: 0;
+
+  color: #7a8c9d;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+/* =====================================================
+   7. INFORMACIÓN DE CUENTA
+   ===================================================== */
+
+.cliente-cuenta {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+
+  margin-top: 25px;
+  padding: 22px 25px;
+
+  background: #edf8f2;
+  border: 1px solid #d0eadc;
+  border-radius: 12px;
+}
+
+.cliente-cuenta-icono {
+  flex-shrink: 0;
+
+  width: 55px;
+  height: 55px;
+
+  display: grid;
+  place-items: center;
+
+  background: #d5efdf;
+  border-radius: 12px;
+
+  color: #268050;
+}
+
+.cliente-cuenta-texto h3 {
+  margin: 0 0 6px;
+
+  color: #1b7047;
+  font-size: 15px;
+}
+
+.cliente-cuenta-texto p {
+  margin: 0 0 10px;
+
+  color: #638c74;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.cliente-cuenta-texto span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  color: #238053;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* =====================================================
+   8. PIE DE PÁGINA
+   ===================================================== */
+
+.cliente-pie {
+  margin-top: 30px;
+  padding: 25px 10px;
+
+  text-align: center;
+  color: #93a1af;
+  font-size: 11px;
+
+  border-top: 1px solid #e0e7ee;
+}
+
+/* =====================================================
+   9. ADAPTACIÓN A PANTALLAS MEDIANAS
+   ===================================================== */
+
+@media (max-width: 1200px) {
+  .cliente-servicios {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .cliente-pasos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .cliente-servicio {
+    min-height: 215px;
+  }
+}
+
+/* =====================================================
+   10. TABLET
+   ===================================================== */
+
+@media (max-width: 800px) {
+  .cliente-hero {
+    padding: 30px 26px;
+    min-height: 225px;
+  }
+
+  .cliente-hero-icono {
+    width: 125px;
+    min-width: 125px;
+    height: 125px;
+  }
+
+  .cliente-hero-icono svg {
+    width: 65px;
+    height: 65px;
+  }
+
+  .cliente-proceso {
+    padding: 22px;
+  }
+}
+
+/* =====================================================
+   11. TELÉFONOS
+   ===================================================== */
+
+@media (max-width: 600px) {
+  .cliente-hero {
+    padding: 27px 20px;
+    border-radius: 12px;
+  }
+
+  .cliente-hero-icono {
+    display: none;
+  }
+
+  .cliente-hero h1 {
+    font-size: 26px;
+  }
+
+  .cliente-hero p {
+    font-size: 13px;
+  }
+
+  .cliente-boton-principal {
+    width: 100%;
+  }
+
+  .cliente-seccion {
+    margin-top: 27px;
+  }
+
+  .cliente-seccion-titulo h2 {
+    font-size: 19px;
+  }
+
+  .cliente-servicios {
+    grid-template-columns: 1fr;
+    gap: 13px;
+  }
+
+  .cliente-servicio {
+    min-height: 0;
+    padding: 21px;
+  }
+
+  .cliente-servicio-icono {
+    margin-bottom: 13px;
+  }
+
+  .cliente-servicio p {
+    margin-bottom: 16px;
+  }
+
+  .cliente-proceso {
+    padding: 19px;
+    margin-top: 27px;
+  }
+
+  .cliente-pasos {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .cliente-paso {
+    min-height: 0;
+    padding: 18px;
+  }
+
+  .cliente-cuenta {
+    padding: 18px;
+    align-items: flex-start;
+  }
+
+  .cliente-cuenta-icono {
+    width: 45px;
+    height: 45px;
+  }
+
+  .cliente-cuenta-icono svg {
+    width: 23px;
+    height: 23px;
+  }
+
+  .cliente-pie {
+    line-height: 1.7;
+  }
+}
+
+/* =====================================================
+   12. PANTALLAS MUY PEQUEÑAS
+   ===================================================== */
+
+@media (max-width: 380px) {
+  .cliente-hero h1 {
+    font-size: 23px;
+  }
+
+  .cliente-hero-etiqueta {
+    font-size: 10px;
+  }
+
+  .cliente-cuenta {
+    flex-direction: column;
+  }
+}
+
+/* =====================================================
+   13. ACCESIBILIDAD
+   ===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .cliente-inicio *,
+  .cliente-inicio *::before,
+  .cliente-inicio *::after {
+    transition: none !important;
+    animation: none !important;
+    scroll-behavior: auto !important;
+  }
+}

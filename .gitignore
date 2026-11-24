@@ -1,0 +1,42 @@
+
+# ===================================
+# SIGET-VÍA — ARCHIVOS EXCLUIDOS
+# ===================================
+
+# Dependencias
+node_modules/
+**/node_modules/
+
+# Variables privadas
+.env
+.env.*
+!.env.example
+!.env.*.example
+
+# Compilaciones
+dist/
+build/
+coverage/
+
+# Archivos temporales
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+
+# Copias de seguridad
+*.bak
+*.tmp
+
+# Bases de datos locales
+*.mdf
+*.ldf
+
+# Certificados y claves privadas
+*.pem
+*.key
+*.pfx

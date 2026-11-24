@@ -1,0 +1,709 @@
+
+/* =====================================================
+   SIGET-VÍA — DISEÑO DE SELECCIÓN DE ASIENTOS
+   PASO 172.5
+   ===================================================== */
+
+.siget-reserva-publica {
+  min-height: 100vh;
+  background: #f3f6fa;
+  color: #18324c;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.siget-reserva-publica * {
+  box-sizing: border-box;
+}
+
+/* CABECERA */
+
+.siget-reserva-header {
+  background: #fff;
+  border-bottom: 1px solid #e2e8f0;
+  box-shadow: 0 2px 10px #142d4510;
+}
+
+.siget-reserva-header-inner {
+  max-width: 1250px;
+  margin: auto;
+  padding: 19px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.siget-marca {
+  display: flex;
+  gap: 13px;
+  align-items: center;
+}
+
+.siget-marca-icono {
+  background: #123454;
+  color: #fff;
+  width: 49px;
+  height: 49px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+}
+
+.siget-marca strong {
+  display: block;
+  font-size: 23px;
+  color: #123454;
+}
+
+.siget-marca span {
+  display: block;
+  font-size: 12px;
+  color: #718096;
+  margin-top: 3px;
+}
+
+.siget-volver {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: #21577f;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+/* CUERPO */
+
+.siget-reserva-main {
+  max-width: 1250px;
+  padding: 28px 24px 55px;
+  margin: auto;
+}
+
+.siget-pasos {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.siget-pasos span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #8b99a8;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.siget-pasos .completo {
+  color: #27845a;
+}
+
+.siget-pasos .actual {
+  color: #245b8a;
+  background: #e4f0fc;
+  border-radius: 30px;
+  padding: 9px 13px;
+}
+
+.siget-titulo-pagina h1 {
+  font-size: 29px;
+  margin: 0 0 8px;
+  color: #123454;
+}
+
+.siget-titulo-pagina p {
+  color: #728196;
+  margin-bottom: 26px;
+}
+
+/* DATOS DEL VIAJE */
+
+.siget-viaje-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  background: linear-gradient(115deg, #143857, #215b87);
+  color: #fff;
+  border-radius: 14px;
+  padding: 25px 30px;
+  margin-bottom: 23px;
+}
+
+.siget-etiqueta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #b6e2fc;
+  letter-spacing: .7px;
+}
+
+.siget-viaje-banner h2 {
+  display: flex;
+  gap: 13px;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 25px;
+  margin: 12px 0 18px;
+  color: #fff;
+}
+
+.siget-viaje-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+
+.siget-viaje-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: #dceaf5;
+  font-size: 13px;
+}
+
+.siget-viaje-banner-precio {
+  min-width: 155px;
+  text-align: right;
+}
+
+.siget-viaje-banner-precio small,
+.siget-viaje-banner-precio span {
+  display: block;
+  color: #d5e6f2;
+  font-size: 12px;
+}
+
+.siget-viaje-banner-precio strong {
+  display: block;
+  font-size: 29px;
+  margin: 7px 0;
+}
+
+/* CONTENIDO DOS COLUMNAS */
+
+.siget-reserva-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 345px;
+  align-items: start;
+  gap: 23px;
+}
+
+.siget-plano-card,
+.siget-resumen-card {
+  background: #fff;
+  border: 1px solid #e5eaf0;
+  box-shadow: 0 5px 22px #1c334a0a;
+  border-radius: 14px;
+  padding: 24px;
+  min-width: 0;
+}
+
+.siget-panel-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  align-items: flex-start;
+}
+
+.siget-panel-head h2 {
+  font-size: 20px;
+  margin-bottom: 7px;
+}
+
+.siget-panel-head p {
+  color: #7b8999;
+  font-size: 13px;
+}
+
+.siget-actualizar {
+  background: #eef5fc;
+  color: #225b86;
+  padding: 10px 12px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+/* SELECCIÓN DE PISO */
+
+.siget-niveles {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.siget-niveles button {
+  background: #f8fafc;
+  border: 1px solid #e0e6ed;
+  color: #5b7085;
+  padding: 15px 12px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  font-weight: 600;
+  min-width: 0;
+}
+
+.siget-niveles button.activo {
+  background: #eaf3fd;
+  border: 2px solid #387ab5;
+  color: #185b91;
+}
+
+.siget-niveles small {
+  font-size: 11px;
+  opacity: .8;
+}
+
+/* LEYENDA */
+
+.siget-leyenda {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 18px;
+  padding: 15px 0;
+  margin-bottom: 17px;
+}
+
+.siget-leyenda span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: #60758a;
+  font-size: 12px;
+}
+
+.siget-color {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border-radius: 5px;
+}
+
+.siget-color.libre {
+  background: #e4f7eb;
+  border: 1px solid #5abc83;
+}
+
+.siget-color.ocupado {
+  background: #fce8e7;
+  border: 1px solid #e39b98;
+}
+
+.siget-color.elegido {
+  background: #dcecff;
+  border: 1px solid #357db9;
+}
+
+/* SILUETA DE BUS */
+
+.siget-bus-area {
+  display: flex;
+  justify-content: center;
+  padding: 12px;
+  background: #f7f9fc;
+  border-radius: 14px;
+  overflow-x: auto;
+}
+
+.siget-bus {
+  width: 330px;
+  max-width: 100%;
+  border: 5px solid #c3d0dc;
+  background: #fff;
+  border-radius: 100px 100px 25px 25px;
+  padding: 20px 18px 18px;
+  position: relative;
+  box-shadow: 0 8px 19px #16334f0b;
+}
+
+.siget-bus::before,
+.siget-bus::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 38px;
+  border-radius: 5px;
+  background: #8194a7;
+  top: 115px;
+}
+
+.siget-bus::before {
+  left: -12px;
+}
+
+.siget-bus::after {
+  right: -12px;
+}
+
+.siget-bus-frente {
+  text-align: center;
+  color: #7f91a5;
+  display: grid;
+  place-items: center;
+  gap: 8px;
+  border-bottom: 1px dashed #d5dfe8;
+  padding: 25px 0 15px;
+  margin-bottom: 15px;
+}
+
+.siget-bus-frente span {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.siget-conductor {
+  padding: 12px;
+  background: #edf3f8;
+  color: #61788c;
+  border-radius: 8px;
+  margin-bottom: 14px;
+  text-align: center;
+  font-size: 11px;
+}
+
+.siget-conductor span {
+  display: inline-flex;
+  gap: 7px;
+  align-items: center;
+}
+
+.siget-bus-interior {
+  display: grid;
+  gap: 10px;
+}
+
+.siget-fila {
+  display: grid;
+  grid-template-columns: 1fr 1fr 30px 1fr 1fr;
+  gap: 7px;
+}
+
+.siget-pasillo {
+  min-width: 0;
+}
+
+.siget-asiento {
+  min-width: 0;
+  height: 60px;
+  border: 1px solid transparent;
+  border-radius: 9px 9px 13px 13px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  font-size: 12px;
+  transition:
+    transform .15s ease,
+    border-color .15s ease,
+    background .15s ease;
+}
+
+.siget-asiento.libre {
+  background: #e4f7eb;
+  border-color: #a5d9bb;
+  color: #187b4b;
+}
+
+.siget-asiento.libre:hover {
+  transform: translateY(-2px);
+  border-color: #248854;
+  background: #d3efde;
+}
+
+.siget-asiento.ocupado {
+  background: #fce8e7;
+  border-color: #efb7b4;
+  color: #be6060;
+  opacity: .8;
+  cursor: not-allowed;
+}
+
+.siget-asiento.elegido {
+  background: #dcecff;
+  border: 2px solid #2878b9;
+  color: #185c96;
+}
+
+.siget-asiento:focus-visible,
+.siget-niveles button:focus-visible {
+  outline: 3px solid #f9a94e;
+  outline-offset: 2px;
+}
+
+.siget-bus-trasera {
+  text-align: center;
+  font-size: 10px;
+  color: #9aabb9;
+  border-top: 1px dashed #d5dfe8;
+  margin-top: 20px;
+  padding: 14px 0 2px;
+  letter-spacing: 1px;
+}
+
+.siget-plano-nota {
+  margin: 20px 0 0;
+  display: flex;
+  gap: 7px;
+  align-items: flex-start;
+  color: #8191a1;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+/* RESUMEN LATERAL */
+
+.siget-resumen-card {
+  position: sticky;
+  top: 20px;
+}
+
+.siget-resumen-head {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding-bottom: 18px;
+  border-bottom: 1px solid #e6ebf0;
+  color: #235c8b;
+}
+
+.siget-resumen-head h2 {
+  font-size: 18px;
+  margin: 0;
+  color: #18324c;
+}
+
+.siget-resumen-ruta {
+  display: flex;
+  gap: 10px;
+  padding: 20px 0;
+}
+
+.siget-resumen-ruta strong,
+.siget-resumen-ruta small {
+  display: block;
+}
+
+.siget-resumen-ruta strong {
+  font-size: 13px;
+}
+
+.siget-resumen-ruta small {
+  font-size: 12px;
+  color: #8796a6;
+  margin-top: 7px;
+}
+
+.siget-disponibilidad {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  background: #edf9f2;
+  color: #247748;
+  padding: 14px;
+  border-radius: 9px;
+  margin-bottom: 22px;
+}
+
+.siget-disponibilidad strong {
+  font-size: 27px;
+}
+
+.siget-disponibilidad span {
+  font-size: 12px;
+}
+
+.siget-resumen-bloque h3 {
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+.siget-sin-asientos {
+  color: #8796a6;
+  background: #f7f9fb;
+  padding: 17px;
+  text-align: center;
+  font-size: 12px;
+  border-radius: 9px;
+}
+
+.siget-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.siget-chips button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #e6f1fd;
+  color: #205e91;
+  border: 1px solid #b9d6ed;
+  border-radius: 7px;
+  padding: 8px;
+  font-size: 12px;
+}
+
+.siget-chips button span {
+  font-size: 17px;
+  margin-left: 5px;
+}
+
+.siget-precios {
+  margin: 25px 0;
+  border-top: 1px solid #e5ebf0;
+  padding-top: 18px;
+}
+
+.siget-precios > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 15px;
+  font-size: 13px;
+}
+
+.siget-precio-total {
+  border-top: 1px dashed #d5e0e9;
+  padding-top: 16px;
+  align-items: center;
+}
+
+.siget-precio-total strong {
+  font-size: 23px;
+  color: #135a8f;
+}
+
+.siget-continuar {
+  width: 100%;
+  border-radius: 9px;
+  padding: 15px;
+  background: #f28e30;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 9px;
+  font-weight: 700;
+}
+
+.siget-continuar:disabled {
+  background: #b2beca;
+  cursor: not-allowed;
+}
+
+.siget-resumen-aviso {
+  text-align: center;
+  font-size: 11px;
+  color: #8996a5;
+  margin-top: 12px;
+}
+
+.siget-seguridad {
+  border-top: 1px solid #e6ebf0;
+  margin-top: 22px;
+  padding-top: 18px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: #6d8193;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.siget-seguridad svg {
+  color: #25845c;
+  flex-shrink: 0;
+}
+
+.siget-cargando,
+.siget-error {
+  padding: 28px;
+  text-align: center;
+  background: #fff;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.siget-error {
+  background: #fff0ef;
+  color: #a33326;
+  margin-bottom: 20px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 950px) {
+  .siget-reserva-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .siget-resumen-card {
+    position: static;
+  }
+}
+
+@media (max-width: 600px) {
+  .siget-reserva-header-inner {
+    padding: 15px;
+  }
+
+  .siget-reserva-main {
+    padding: 20px 12px;
+  }
+
+  .siget-viaje-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 21px;
+  }
+
+  .siget-viaje-banner-precio {
+    text-align: left;
+  }
+
+  .siget-plano-card,
+  .siget-resumen-card {
+    padding: 15px;
+  }
+
+  .siget-panel-head {
+    flex-direction: column;
+  }
+
+  .siget-bus {
+    padding: 15px 10px;
+  }
+
+  .siget-fila {
+    gap: 5px;
+    grid-template-columns: 1fr 1fr 20px 1fr 1fr;
+  }
+
+  .siget-niveles {
+    gap: 7px;
+  }
+
+  .siget-niveles button {
+    padding: 12px 6px;
+    font-size: 12px;
+  }
+}

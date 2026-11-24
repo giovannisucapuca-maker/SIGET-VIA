@@ -1,0 +1,1343 @@
+
+/* =====================================================
+   SIGET-VÍA — PASO 187
+   VENTANA PÚBLICA DE TRANSPORTES VÍA S.A.C.
+   ===================================================== */
+
+/* =====================================================
+   1. COLORES Y CONFIGURACIÓN GENERAL
+   ===================================================== */
+
+.via-publica {
+  --via-naranja: #f29422;
+  --via-azul: #112d49;
+  --via-texto: #17334c;
+
+  min-height: 100vh;
+  background: #f7f9fb;
+  color: var(--via-texto);
+  font-family: inherit;
+}
+
+.via-publica * {
+  box-sizing: border-box;
+}
+
+.via-publica a {
+  text-decoration: none;
+}
+
+.via-publica button,
+.via-publica input {
+  font: inherit;
+}
+
+.via-publica-contenedor {
+  width: min(1180px, 92%);
+  margin: 0 auto;
+}
+
+/* =====================================================
+   2. ENCABEZADO Y NAVEGACIÓN
+   ===================================================== */
+
+.via-publica-nav {
+  min-height: 82px;
+  padding: 8px max(4%, calc((100vw - 1220px) / 2));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 26px;
+  background: #ffffff;
+  box-shadow: 0 3px 20px #0e29420c;
+  position: relative;
+  z-index: 5;
+}
+
+.via-publica-marca {
+  width: 138px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+.via-publica-marca img {
+  width: 100%;
+  height: 55px;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.via-publica-enlaces {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 21px;
+}
+
+.via-publica-enlaces a {
+  color: #29445b;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.via-publica-enlaces a:hover {
+  color: #df7a11;
+}
+
+.via-publica-cuenta {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  white-space: nowrap;
+}
+
+.via-publica-acceso {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--via-azul);
+}
+
+.via-publica-registro {
+  background: var(--via-naranja);
+  padding: 11px 13px;
+  border-radius: 9px;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-weight: 800;
+  font-size: 13px;
+}
+
+/* =====================================================
+   3. PORTADA CON FOTOGRAFÍA DEL BUS
+   ===================================================== */
+
+.via-publica-hero {
+  min-height: 440px;
+  position: relative;
+  isolation: isolate;
+  background: #173d5b;
+  overflow: hidden;
+}
+
+.via-publica-hero-imagen {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+
+  background-image: url('/via-sac-bus-portada.png');
+  background-position: center 52%;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.via-publica-hero-sombra {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+
+  background: linear-gradient(
+    90deg,
+    rgba(9, 33, 56, 0.96) 0%,
+    rgba(9, 33, 56, 0.83) 34%,
+    rgba(9, 33, 56, 0.18) 85%
+  );
+}
+
+.via-publica-hero-interior {
+  width: min(1180px, 92%);
+  min-height: 440px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+}
+
+.via-publica-hero-texto {
+  max-width: 565px;
+  padding: 40px 0 100px;
+  color: #ffffff;
+}
+
+.via-publica-pildora {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 13px;
+  border-radius: 99px;
+  background: #ffffff24;
+  border: 1px solid #ffffff55;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.via-publica-hero h1 {
+  font-size: clamp(35px, 5vw, 60px);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  margin: 18px 0;
+}
+
+.via-publica-hero p {
+  font-size: 16px;
+  color: #ecf3f8;
+  line-height: 1.7;
+  max-width: 500px;
+}
+
+.via-publica-hero-boton {
+  margin-top: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--via-naranja);
+  color: #ffffff;
+  font-weight: 800;
+  border-radius: 10px;
+  padding: 15px 20px;
+}
+
+/* =====================================================
+   4. BUSCADOR DE VIAJES
+   ===================================================== */
+
+.via-publica-buscador-area {
+  position: relative;
+  margin-top: -62px;
+  z-index: 2;
+}
+
+.via-publica-buscador {
+  background: #ffffff;
+  padding: 24px 28px;
+  border-radius: 16px;
+  box-shadow: 0 15px 55px #12365420;
+  border: 1px solid #e5edf4;
+}
+
+.via-publica-buscador-titulo {
+  display: flex;
+  gap: 13px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.via-publica-buscador-titulo > span {
+  display: grid;
+  place-items: center;
+  width: 43px;
+  height: 43px;
+  color: #dd7a0d;
+  background: #fff0df;
+  border-radius: 10px;
+}
+
+.via-publica-buscador h2 {
+  font-size: 21px;
+  margin: 0 0 3px;
+  color: var(--via-azul);
+}
+
+.via-publica-buscador p {
+  margin: 0;
+  color: #647c90;
+  font-size: 12px;
+}
+
+.via-publica-campos {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr auto;
+  gap: 12px;
+  align-items: end;
+}
+
+.via-publica-campos label {
+  display: grid;
+  gap: 8px;
+  color: #34516b;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.via-publica-campos label span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.via-publica-campos input {
+  height: 46px;
+  padding: 10px 12px;
+  width: 100%;
+  min-width: 0;
+  border: 1px solid #cfdae3;
+  border-radius: 9px;
+  background: #ffffff;
+  color: #17334c;
+  font-size: 14px;
+}
+
+.via-publica-campos input:focus {
+  outline: 2px solid #f7c88e;
+  border-color: #e98b23;
+}
+
+.via-publica-buscar-btn {
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 0 18px;
+  background: #f29422;
+  border: 0;
+  border-radius: 9px;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.via-publica-buscar-btn:disabled,
+.via-publica-actualizar:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.via-publica-limpiar {
+  margin-top: 12px;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  color: #60758a;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+/* =====================================================
+   5. SECCIONES GENERALES
+   ===================================================== */
+
+.via-publica-seccion {
+  padding: 65px 0 10px;
+  scroll-margin-top: 24px;
+}
+
+.via-publica-titulo-fila {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin-bottom: 25px;
+}
+
+.via-publica-sobretitulo {
+  font-size: 11px;
+  letter-spacing: 0.13em;
+  color: #dc7d11;
+  font-weight: 900;
+}
+
+.via-publica-seccion h2 {
+  font-size: 30px;
+  letter-spacing: -0.02em;
+  margin: 7px 0;
+  color: var(--via-azul);
+}
+
+.via-publica-seccion p {
+  color: #677d90;
+  line-height: 1.6;
+}
+
+.via-publica-titulo-fila p {
+  font-size: 13px;
+  margin: 0;
+}
+
+.via-publica-actualizar {
+  border: 1px solid #d4e1eb;
+  color: #26435c;
+  background: #ffffff;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* =====================================================
+   6. MENSAJES Y RESULTADOS
+   ===================================================== */
+
+.via-publica-mensaje {
+  background: #ffffff;
+  padding: 24px;
+  border: 1px solid #dbe5ed;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+}
+
+.via-publica-mensaje.error {
+  background: #fff3f0;
+  color: #a73426;
+  border-color: #f3cbc5;
+}
+
+.via-publica-vacio {
+  text-align: center;
+  padding: 48px 20px;
+  border: 1px dashed #cddbe6;
+  border-radius: 14px;
+  background: #ffffff;
+  color: #7c91a2;
+}
+
+.via-publica-vacio svg {
+  color: #de8b2c;
+}
+
+.via-publica-vacio h3 {
+  color: #163550;
+  margin: 12px 0 0;
+}
+
+.via-publica-contador {
+  font-size: 12px !important;
+  margin-bottom: 12px;
+}
+
+.via-publica-lista {
+  display: grid;
+  gap: 16px;
+}
+
+/* =====================================================
+   7. TARJETAS DE VIAJES
+   ===================================================== */
+
+.via-publica-viaje {
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr) 195px;
+  gap: 21px;
+  align-items: center;
+  background: #ffffff;
+  border-radius: 15px;
+  border: 1px solid #e1eaf0;
+  padding: 24px;
+  box-shadow: 0 5px 23px #1837500b;
+}
+
+.via-publica-viaje-icono {
+  background: #eaf2fb;
+  color: #1e6293;
+  width: 65px;
+  height: 65px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+}
+
+.via-publica-servicio {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #fff0dc;
+  color: #aa6010;
+  padding: 7px 10px;
+  border-radius: 7px;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.via-publica-viaje h3 {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 20px;
+  color: #142f48;
+  margin: 12px 0;
+}
+
+.via-publica-viaje h3 svg {
+  color: #ed932d;
+}
+
+.via-publica-meta {
+  display: flex;
+  gap: 12px 22px;
+  flex-wrap: wrap;
+  margin-top: 9px;
+  font-size: 12px;
+  color: #657b8d;
+}
+
+.via-publica-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.via-publica-disponible {
+  color: #248052 !important;
+  font-weight: 700;
+}
+
+.via-publica-agotado {
+  color: #b75c3d !important;
+}
+
+/* =====================================================
+   8. TARIFA Y SELECCIÓN DE ASIENTOS
+   ===================================================== */
+
+.via-publica-viaje-accion {
+  padding-left: 21px;
+  border-left: 1px solid #e3ebf1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.via-publica-viaje-accion small {
+  color: #7b8d9c;
+  font-size: 12px;
+}
+
+.via-publica-viaje-accion strong {
+  font-size: 27px;
+  color: #163e61;
+  margin-top: 2px;
+}
+
+.via-publica-viaje-accion span {
+  font-size: 11px;
+  color: #7b8d9c;
+}
+
+.via-publica-viaje-accion a {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+  justify-content: center;
+  background: #f29422;
+  color: #ffffff;
+  padding: 12px 11px;
+  border-radius: 9px;
+  font-size: 12px;
+  font-weight: 800;
+  margin-top: 13px;
+  width: 100%;
+}
+
+.via-publica-viaje-accion em {
+  font-size: 12px;
+  font-style: normal;
+  color: #ab5338;
+  margin-top: 13px;
+}
+
+/* =====================================================
+   9. SECCIÓN DE SERVICIOS
+   ===================================================== */
+
+.via-publica-titulo-centro {
+  text-align: center;
+  margin-bottom: 26px;
+}
+
+.via-publica-titulo-centro p {
+  font-size: 14px;
+  margin: 0;
+}
+
+.via-publica-servicios {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  align-items: center;
+  background: #ffffff;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid #e5eaf1;
+}
+
+.via-publica-foto-servicios {
+  height: 100%;
+  min-height: 320px;
+  background: #d8e4ed;
+}
+
+.via-publica-foto-servicios img {
+  width: 100%;
+  height: 100%;
+  min-height: 320px;
+  object-fit: cover;
+}
+
+.via-publica-servicios-texto {
+  padding: 25px 34px 25px 0;
+}
+
+.via-publica-servicios-texto h3 {
+  color: #153954;
+  font-size: 26px;
+  margin: 0 0 10px;
+}
+
+.via-publica-servicios-texto p {
+  font-size: 14px;
+}
+
+.via-publica-beneficios {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px 9px;
+  margin: 21px 0 25px;
+}
+
+.via-publica-beneficios span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #2d536c;
+}
+
+.via-publica-beneficios svg {
+  color: #ed8d26;
+  flex-shrink: 0;
+}
+
+.via-publica-servicios-texto > a {
+  color: #d97c12;
+  font-weight: 800;
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  font-size: 14px;
+}
+
+/* =====================================================
+   10. ACCESO A CUENTA
+   ===================================================== */
+
+.via-publica-final {
+  margin: 65px 0;
+  background: #173f60;
+  color: #ffffff;
+  border-radius: 17px;
+  padding: 30px 40px;
+  display: flex;
+  gap: 25px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.via-publica-final h2 {
+  font-size: 23px;
+  margin: 9px 0 3px;
+  color: #ffffff;
+}
+
+.via-publica-final p {
+  font-size: 13px;
+  color: #d8e5f0;
+  margin: 0;
+}
+
+.via-publica-final > a {
+  background: #f29422;
+  color: #ffffff;
+  padding: 13px 17px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 13px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+/* =====================================================
+   11. PIE DE PÁGINA
+   ===================================================== */
+
+.via-publica-footer {
+  background: #102d46;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+  padding: 26px max(4%, calc((100vw - 1220px) / 2));
+  color: #c5d3df;
+}
+
+.via-publica-footer > div:first-child {
+  max-width: 430px;
+}
+
+.via-publica-footer img {
+  width: 110px;
+  height: 45px;
+  object-fit: contain;
+  object-position: left;
+}
+
+.via-publica-footer p {
+  font-size: 12px;
+  line-height: 1.7;
+  margin: 3px 0 0;
+}
+
+.via-publica-footer > div:last-child {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.via-publica-footer a {
+  color: #ffffff;
+  font-size: 12px;
+}
+
+/* =====================================================
+   12. DISEÑO RESPONSIVO — TABLET
+   ===================================================== */
+
+@media (max-width: 1080px) {
+  .via-publica-nav {
+    gap: 12px;
+  }
+
+  .via-publica-enlaces {
+    gap: 10px;
+  }
+
+  .via-publica-enlaces a {
+    font-size: 12px;
+  }
+
+  .via-publica-campos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .via-publica-buscar-btn {
+    grid-column: span 2;
+  }
+}
+
+/* =====================================================
+   13. DISEÑO RESPONSIVO — CELULARES
+   ===================================================== */
+
+@media (max-width: 760px) {
+  .via-publica-nav {
+    height: auto;
+    min-height: 75px;
+    flex-wrap: wrap;
+    padding: 9px 4%;
+  }
+
+  .via-publica-enlaces {
+    order: 3;
+    width: 100%;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 8px;
+  }
+
+  .via-publica-enlaces a {
+    white-space: nowrap;
+  }
+
+  .via-publica-cuenta {
+    margin-left: auto;
+  }
+
+  .via-publica-hero,
+  .via-publica-hero-interior {
+    min-height: 395px;
+  }
+
+  .via-publica-hero-texto {
+    padding: 45px 0 90px;
+  }
+
+  .via-publica-hero-sombra {
+    background: linear-gradient(
+      90deg,
+      #092138ed,
+      #09213899
+    );
+  }
+
+  .via-publica-viaje {
+    grid-template-columns: 55px 1fr;
+    gap: 12px;
+    padding: 18px;
+  }
+
+  .via-publica-viaje-icono {
+    width: 50px;
+    height: 50px;
+  }
+
+  .via-publica-viaje-accion {
+    grid-column: 1 / -1;
+    border-left: 0;
+    border-top: 1px solid #e3ebf1;
+    padding: 13px 0 0;
+  }
+
+  .via-publica-servicios {
+    grid-template-columns: 1fr;
+  }
+
+  .via-publica-foto-servicios,
+  .via-publica-foto-servicios img {
+    min-height: 225px;
+    max-height: 300px;
+  }
+
+  .via-publica-servicios-texto {
+    padding: 0 23px 27px;
+  }
+
+  .via-publica-final {
+    padding: 25px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .via-publica-footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* =====================================================
+   14. CELULARES PEQUEÑOS
+   ===================================================== */
+
+@media (max-width: 490px) {
+  .via-publica-marca {
+    width: 95px;
+  }
+
+  .via-publica-cuenta {
+    gap: 7px;
+  }
+
+  .via-publica-registro {
+    padding: 9px 8px;
+  }
+
+  .via-publica-acceso,
+  .via-publica-registro {
+    font-size: 11px;
+  }
+
+  .via-publica-campos {
+    grid-template-columns: 1fr;
+  }
+
+  .via-publica-buscar-btn {
+    grid-column: auto;
+  }
+
+  .via-publica-buscador {
+    padding: 18px;
+  }
+
+  .via-publica-buscador-area {
+    margin-top: -35px;
+  }
+
+  .via-publica-beneficios {
+    grid-template-columns: 1fr;
+  }
+
+  .via-publica-viaje h3 {
+    font-size: 17px;
+  }
+}
+
+
+/* =====================================================
+   SIGET-VÍA — PASO 189
+   MEJORAS VISUALES DEL PORTAL PÚBLICO
+   ===================================================== */
+
+/* -----------------------------------------------------
+   1. IDENTIDAD VISUAL
+   ----------------------------------------------------- */
+
+.via-publica {
+  --via-naranja: #f5a000;
+  --via-naranja-oscuro: #e78600;
+  --via-azul: #102f4e;
+  --via-texto: #233b50;
+
+  background: #f5f7fb;
+  color: var(--via-texto);
+}
+
+/* -----------------------------------------------------
+   2. ENCABEZADO PROFESIONAL
+   ----------------------------------------------------- */
+
+.via-publica-nav {
+  background: #ffffff;
+  min-height: 90px;
+  border-bottom: 3px solid #f5a000;
+  box-shadow: 0 5px 24px rgba(16, 47, 78, 0.1);
+}
+
+.via-publica-marca {
+  width: 145px;
+}
+
+.via-publica-marca img {
+  width: 100%;
+  height: 65px;
+  object-fit: contain;
+}
+
+.via-publica-enlaces {
+  gap: 24px;
+}
+
+.via-publica-enlaces a {
+  color: #243d53;
+  font-size: 13px;
+  font-weight: 700;
+  transition: color 0.2s ease;
+}
+
+.via-publica-enlaces a:hover {
+  color: #e78600;
+}
+
+/* -----------------------------------------------------
+   3. BOTONES DE ACCESO
+   ----------------------------------------------------- */
+
+.via-publica-acceso {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 12px 16px;
+  border: 1.5px solid #f5a000;
+  border-radius: 10px;
+
+  color: #b66b00;
+  background: #ffffff;
+
+  font-size: 13px;
+  font-weight: 800;
+
+  transition: all 0.2s ease;
+}
+
+.via-publica-acceso:hover {
+  background: #fff4df;
+  color: #ad6200;
+  transform: translateY(-2px);
+}
+
+.via-publica-registro {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 12px 18px;
+  border-radius: 10px;
+
+  background: linear-gradient(
+    135deg,
+    #ffad19,
+    #f18c00
+  );
+
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 800;
+
+  box-shadow: 0 5px 15px rgba(241, 140, 0, 0.25);
+  transition: all 0.2s ease;
+}
+
+.via-publica-registro:hover {
+  background: #dc7d00;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(241, 140, 0, 0.35);
+}
+
+/* -----------------------------------------------------
+   4. PORTADA PRINCIPAL
+   ----------------------------------------------------- */
+
+.via-publica-hero {
+  min-height: 540px;
+  background: #102f4e;
+}
+
+.via-publica-hero-interior {
+  min-height: 540px;
+}
+
+.via-publica-hero-imagen {
+  background-image: url('/via-sac-bus-portada.png');
+  background-size: cover;
+  background-position: center 45%;
+}
+
+.via-publica-hero-sombra {
+  background: linear-gradient(
+    90deg,
+    rgba(7, 27, 48, 0.95) 0%,
+    rgba(7, 27, 48, 0.76) 38%,
+    rgba(7, 27, 48, 0.12) 100%
+  );
+}
+
+.via-publica-hero-texto {
+  max-width: 620px;
+  padding: 65px 0 120px;
+}
+
+.via-publica-hero h1 {
+  font-size: clamp(38px, 5vw, 65px);
+  font-weight: 900;
+  line-height: 1.07;
+  letter-spacing: -1.8px;
+
+  color: #ffffff;
+  text-shadow: 0 3px 18px rgba(0, 0, 0, 0.2);
+}
+
+.via-publica-hero p {
+  font-size: 17px;
+  line-height: 1.85;
+  color: #f1f5fa;
+}
+
+.via-publica-pildora {
+  background: rgba(245, 160, 0, 0.2);
+  color: #fff0c7;
+  border-color: rgba(245, 160, 0, 0.55);
+}
+
+.via-publica-hero-boton {
+  padding: 16px 25px;
+  margin-top: 24px;
+
+  border-radius: 11px;
+  background: linear-gradient(
+    135deg,
+    #ffae17,
+    #ed8700
+  );
+
+  font-size: 15px;
+  color: #ffffff;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+
+  transition: all 0.2s ease;
+}
+
+.via-publica-hero-boton:hover {
+  transform: translateY(-3px);
+  background: #df7b00;
+}
+
+/* -----------------------------------------------------
+   5. BUSCADOR DE PASAJES
+   ----------------------------------------------------- */
+
+.via-publica-buscador-area {
+  margin-top: -75px;
+}
+
+.via-publica-buscador {
+  padding: 30px 34px;
+  background: #ffffff;
+
+  border-radius: 20px;
+  border: 1px solid #e6ebf0;
+
+  box-shadow: 0 15px 50px rgba(15, 47, 76, 0.17);
+}
+
+.via-publica-buscador-titulo {
+  margin-bottom: 24px;
+}
+
+.via-publica-buscador-titulo > span {
+  width: 50px;
+  height: 50px;
+  border-radius: 13px;
+
+  color: #ca7300;
+  background: #fff0d5;
+}
+
+.via-publica-buscador h2 {
+  font-size: 24px;
+  font-weight: 850;
+  color: #102f4e;
+}
+
+.via-publica-campos {
+  gap: 15px;
+}
+
+.via-publica-campos input {
+  height: 52px;
+  border: 1.5px solid #d6e0e9;
+  border-radius: 11px;
+  background: #fbfcfe;
+}
+
+.via-publica-campos input:focus {
+  outline: 2px solid rgba(245, 160, 0, 0.2);
+  border-color: #f5a000;
+}
+
+.via-publica-buscar-btn {
+  height: 52px;
+  padding: 0 25px;
+
+  border-radius: 11px;
+  background: #f5a000;
+  color: #ffffff;
+
+  font-weight: 850;
+  box-shadow: 0 5px 14px rgba(245, 160, 0, 0.2);
+
+  transition: background 0.2s ease;
+}
+
+.via-publica-buscar-btn:hover:not(:disabled) {
+  background: #dc8000;
+}
+
+/* -----------------------------------------------------
+   6. TÍTULOS Y RESULTADOS
+   ----------------------------------------------------- */
+
+.via-publica-seccion h2 {
+  font-size: 32px;
+  font-weight: 850;
+  color: #102f4e;
+}
+
+.via-publica-sobretitulo {
+  color: #cc7800;
+  font-size: 12px;
+  letter-spacing: 1.5px;
+}
+
+.via-publica-viaje {
+  border: 1px solid #e0e7ef;
+  border-radius: 18px;
+  padding: 27px;
+
+  box-shadow: 0 5px 20px rgba(16, 47, 78, 0.06);
+  transition: all 0.2s ease;
+}
+
+.via-publica-viaje:hover {
+  border-color: #f3c67b;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(16, 47, 78, 0.12);
+}
+
+.via-publica-viaje-icono {
+  background: #fff1d9;
+  color: #e28a00;
+}
+
+.via-publica-servicio {
+  background: #fff0d7;
+  color: #ae6400;
+  border: 1px solid #f4d39c;
+}
+
+.via-publica-viaje h3 {
+  color: #102f4e;
+  font-weight: 850;
+}
+
+.via-publica-viaje-accion strong {
+  color: #102f4e;
+  font-size: 30px;
+}
+
+.via-publica-viaje-accion a {
+  background: #f5a000;
+  border-radius: 10px;
+  font-weight: 850;
+  transition: background 0.2s ease;
+}
+
+.via-publica-viaje-accion a:hover {
+  background: #d87c00;
+}
+
+/* -----------------------------------------------------
+   7. SERVICIOS Y FOTOGRAFÍA SECUNDARIA
+   ----------------------------------------------------- */
+
+.via-publica-servicios {
+  border-radius: 22px;
+  box-shadow: 0 8px 30px rgba(16, 47, 78, 0.07);
+}
+
+.via-publica-foto-servicios {
+  min-height: 380px;
+}
+
+.via-publica-foto-servicios img {
+  min-height: 380px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.via-publica-servicios-texto h3 {
+  font-size: 29px;
+  font-weight: 850;
+}
+
+.via-publica-beneficios span {
+  font-size: 13px;
+}
+
+/* -----------------------------------------------------
+   8. ACCESO AL PORTAL DEL CLIENTE
+   ----------------------------------------------------- */
+
+.via-publica-final {
+  background: linear-gradient(
+    120deg,
+    #102f4e,
+    #205779
+  );
+
+  border-radius: 20px;
+  padding: 38px 45px;
+}
+
+.via-publica-final > a {
+  background: #f5a000;
+  color: #ffffff;
+  border-radius: 11px;
+  padding: 15px 22px;
+  font-weight: 850;
+}
+
+.via-publica-final > a:hover {
+  background: #dc8000;
+}
+
+/* -----------------------------------------------------
+   9. PIE DE PÁGINA
+   ----------------------------------------------------- */
+
+.via-publica-footer {
+  background: #0b263f;
+  border-top: 4px solid #f5a000;
+}
+
+/* -----------------------------------------------------
+   10. ADAPTACIÓN A PANTALLAS PEQUEÑAS
+   ----------------------------------------------------- */
+
+@media (max-width: 1080px) {
+  .via-publica-campos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .via-publica-buscar-btn {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 760px) {
+  .via-publica-nav {
+    min-height: 80px;
+  }
+
+  .via-publica-hero,
+  .via-publica-hero-interior {
+    min-height: 430px;
+  }
+
+  .via-publica-hero-texto {
+    padding: 50px 0 105px;
+  }
+
+  .via-publica-hero h1 {
+    font-size: 39px;
+    letter-spacing: -1px;
+  }
+
+  .via-publica-hero p {
+    font-size: 14px;
+  }
+
+  .via-publica-buscador {
+    padding: 22px;
+  }
+
+  .via-publica-seccion h2 {
+    font-size: 26px;
+  }
+
+  .via-publica-viaje {
+    padding: 18px;
+  }
+
+  .via-publica-final {
+    padding: 28px;
+  }
+}
+
+@media (max-width: 490px) {
+  .via-publica-campos {
+    grid-template-columns: 1fr;
+  }
+
+  .via-publica-buscar-btn {
+    grid-column: auto;
+  }
+
+  .via-publica-hero h1 {
+    font-size: 34px;
+  }
+
+  .via-publica-hero-sombra {
+    background: linear-gradient(
+      90deg,
+      rgba(7, 27, 48, 0.92),
+      rgba(7, 27, 48, 0.55)
+    );
+  }
+
+  .via-publica-buscador-area {
+    margin-top: -40px;
+  }
+}
