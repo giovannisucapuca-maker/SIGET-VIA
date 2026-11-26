@@ -34,13 +34,13 @@ Desarrollar un sistema web de gestión de transporte interprovincial mediante la
 - Registrar historiales y operaciones de auditoría.
 - Implementar el libro de reclamaciones.
 - Generar reportes y manifiestos de pasajeros.
-- Integrar el frontend, backend y base de datos mediante una API REST.
+- Integrar las capas de presentación, lógica de negocio y acceso a datos mediante una API REST.
 
 ---
 
 ## 4. Tecnologías utilizadas
 
-### 4.1. Frontend — Capa de presentación
+### 4.1. Capa de presentación — `app/presentacion/`
 
 - React.
 - TypeScript.
@@ -51,9 +51,9 @@ Desarrollar un sistema web de gestión de transporte interprovincial mediante la
 - Lucide React.
 - Fetch API.
 
-Estas tecnologías permiten construir interfaces interactivas y consumir los servicios del backend.
+Estas tecnologías permiten construir interfaces interactivas y consumir los servicios de la capa de lógica.
 
-### 4.2. Backend — Capa de lógica de negocio
+### 4.2. Capa de lógica de negocio — `app/negocio/`
 
 - Node.js.
 - Express.
@@ -64,9 +64,9 @@ Estas tecnologías permiten construir interfaces interactivas y consumir los ser
 - Middlewares de autenticación y autorización.
 - API REST.
 
-El backend implementa validaciones, reglas operativas, control de permisos y procesamiento de solicitudes.
+La capa de lógica implementa validaciones, reglas operativas, control de permisos y procesamiento de solicitudes.
 
-### 4.3. Base de datos — Capa de datos
+### 4.3. Capa de acceso a datos — `app/datos/`
 
 - Microsoft SQL Server.
 - Transact-SQL (T-SQL).
@@ -81,135 +81,43 @@ El backend implementa validaciones, reglas operativas, control de permisos y pro
 
 ## 5. Arquitectura de tres capas
 
-SIGET-VÍA está desarrollado bajo un modelo de arquitectura de tres capas que integra la presentación de información, la lógica del negocio y la persistencia de datos.
+Las tres capas están **separadas en carpetas independientes** dentro de `app/`. Cada una es un paquete propio con sus dependencias:
 
-### 5.1. Primera capa: presentación o vista
-
-**Tecnologías:** React + Vite + TypeScript.
-
-Esta capa se encarga de la interacción con el usuario y de presentar los datos recibidos del servidor.
-
-Incluye formularios, tablas, buscadores, paneles administrativos y la interfaz pública de consulta de viajes.
-
-**Directorio:**
-
-`frontend/src/`
-
-**Archivos representativos:**
-
-- `App.tsx`
-- `ViajesPublicos.tsx`
-- `AsientosPublicos.tsx`
-- `ClienteInicio.tsx`
-- `MisReservas.tsx`
-- `DashboardAdmin.tsx`
-- `Viajes.tsx`
-- `Reservas.tsx`
-- `Ventas.tsx`
-- `Pagos.tsx`
-
-**Enlace:**
-
-https://github.com/giovannisucapuca-maker/SIGET-VIA/tree/main/frontend/src
-
-### 5.2. Segunda capa: lógica de negocio
-
-**Tecnologías:** Node.js + Express + JavaScript + Zod.
-
-Esta capa recibe las solicitudes del frontend, valida la información, comprueba permisos y ejecuta las reglas del sistema.
-
-Entre sus responsabilidades se encuentran:
-
-- Autenticación y autorización de usuarios.
-- Validación de documentos de identidad.
-- Control de disponibilidad de buses y conductores.
-- Validación de horarios de viajes.
-- Control de disponibilidad de asientos.
-- Prevención de reservas duplicadas.
-- Cancelación y reprogramación de reservas.
-- Validación de ventas y pagos.
-- Gestión de reclamaciones.
-- Registro de movimientos e historiales.
-
-**Directorio:**
-
-`backend/src/`
-
-**Archivos representativos:**
-
-- `server.js`
-- `viajes.js`
-- `reservas.js`
-- `ventas.js`
-- `pagos.js`
-- `reclamaciones.js`
-- `registro-clientes.js`
-- `mis-reservas.js`
-- `manifiestos.js`
-
-**Enlace:**
-
-https://github.com/giovannisucapuca-maker/SIGET-VIA/tree/main/backend/src
-
-### 5.3. Tercera capa: acceso a datos
-
-**Tecnologías:** SQL Server + Transact-SQL.
-
-Esta capa permite almacenar, consultar, actualizar y mantener la información del sistema.
-
-Se utilizan consultas parametrizadas, transacciones y restricciones de integridad para proteger la consistencia de los datos.
-
-**Archivos principales:**
-
-- `backend/src/db.js`
-- `database/01_esquema_sqlserver.sql`
-
-**Enlaces:**
-
-Conexión a la base de datos:
-
-https://github.com/giovannisucapuca-maker/SIGET-VIA/blob/main/backend/src/db.js
-
-Esquema SQL Server:
-
-https://github.com/giovannisucapuca-maker/SIGET-VIA/blob/main/database/01_esquema_sqlserver.sql
-
-**Observación técnica:** SIGET-VÍA presenta las tres capas a nivel funcional y de despliegue. Actualmente, algunas consultas SQL se encuentran dentro de los módulos del backend, por lo que la separación interna entre lógica de negocio y acceso a datos puede perfeccionarse mediante repositorios o servicios especializados.
-
-### 5.4. Flujo de comunicación entre capas
+| Capa | Carpeta | Tecnología | Responsabilidad |
+|---|---|---|---|
+| Presentación (vista) | `app/presentacion/` | React + TypeScript + Vite | Pantallas, formularios y navegación. Se comunica con la API REST |
+| Lógica de negocio | `app/negocio/` | Node.js + Express + Zod + JWT | Controladores HTTP, reglas del sistema, seguridad por roles |
+| Acceso a datos | `app/datos/` | SQL Server + `mssql` | Conexión, consultas parametrizadas, transacciones |
 
 ```text
-                USUARIO
-                   |
-                   v
-       CAPA DE PRESENTACIÓN
-        React + TypeScript
-                   |
-             HTTP / JSON
-                   |
-                   v
-       CAPA DE LÓGICA DE NEGOCIO
-          Node.js + Express
-           Validaciones
-          Reglas de negocio
-          Autenticación JWT
-                   |
-             Consultas SQL
-                   |
-                   v
-          CAPA DE DATOS
-          SQL Server
-          SIGET_VIA_DB
-                   |
-                   v
-             RESULTADOS
-                   |
-                   v
-              BACKEND
-                   |
-                   v
-              FRONTEND
+presentacion  ──HTTP/JSON──▶  negocio  ──repositorios──▶  datos  ──SQL──▶  SQL Server (SIGET_VIA_DB)
 ```
+
+Reglas:
+
+- **presentacion** no importa código de `negocio` ni de `datos`; solo `src/servicios/` llama a la API.
+- **negocio** no escribe SQL; solo sus `servicios/` usan la capa de datos (paquete `siget-via-datos`).
+- **datos** no contiene reglas del negocio ni conoce Express.
+
+Se comprueban automáticamente con `npm run check:capas` y `npm test`.
+
+### 5.1. Ejemplo: cancelar una reserva
+
+```text
+app/presentacion/src/paginas/Reservas.tsx            botón "Cancelar"
+  → app/presentacion/src/servicios/api/reservas.api.ts   PATCH /api/reservas/15/cancelar
+app/negocio/src/controladores/reservas.controlador.js recibe la petición
+  → app/negocio/src/servicios/reservas.service.js      ¿se puede cancelar? ¿el viaje ya salió? ¿tiene venta vigente?
+app/datos/repositorios/reservas.repository.js        libera asientos, cambia estado y registra historial (transacción)
+```
+
+### 5.2. Enlaces por capa
+
+- Presentación: https://github.com/giovannisucapuca-maker/SIGET-VIA/tree/main/app/presentacion
+- Lógica de negocio: https://github.com/giovannisucapuca-maker/SIGET-VIA/tree/main/app/negocio
+- Acceso a datos: https://github.com/giovannisucapuca-maker/SIGET-VIA/tree/main/app/datos
+
+Detalle módulo por módulo en `docs/ARQUITECTURA.md`.
 
 ---
 
@@ -222,23 +130,24 @@ El sistema incluye los siguientes módulos:
 | 1 | Autenticación | Inicio de sesión, JWT y control de acceso por roles. |
 | 2 | Usuarios | Registro, consulta, edición y activación o desactivación. |
 | 3 | Pasajeros | Registro y administración de información personal. |
-| 4 | Rutas | Registro y administración de rutas interprovinciales. |
+| 4 | Rutas | Registro y administración de rutas interprovinciales, con terminal de origen y de destino. No se puede desactivar una ruta con viajes programados. |
+| 4.1 | Terminales terrestres | Registro de terminales de embarque por ciudad (nombre, dirección, referencia, teléfono). No se desactiva un terminal usado por rutas activas. |
 | 5 | Buses | Gestión de unidades, capacidad, estados y distribución de asientos. |
-| 6 | Conductores | Registro, consulta y administración de conductores. |
-| 7 | Viajes | Programación de viajes y validación de disponibilidad. |
+| 6 | Conductores | Registro, consulta y administración de conductores, con fecha de vencimiento de licencia. |
+| 7 | Viajes | Programación de viajes y validación de disponibilidad. No se asigna un conductor con la licencia vencida a la fecha de salida. |
 | 8 | Consulta pública | Búsqueda de viajes por origen, destino y fecha. |
 | 9 | Asientos públicos | Visualización de asientos disponibles y ocupados por bus. |
 | 10 | Reservas | Registro, consulta, edición, cancelación y reprogramación. |
 | 11 | Ventas | Administración de ventas y sus estados. |
-| 12 | Pagos | Gestión y control de pagos, incluidos escenarios de prueba. |
+| 12 | Pagos | Gestión y control de pagos simulados; el pago puede simularse como APROBADO o RECHAZADO (en ese caso no se registra la venta). |
 | 13 | Portal del cliente | Inicio del cliente y administración de su perfil. |
 | 14 | Mis reservas | Consulta de reservas asociadas al cliente. |
 | 15 | Políticas del servicio | Gestión de condiciones y registro de aceptaciones. |
-| 16 | Reclamaciones | Registro público y gestión administrativa. |
+| 16 | Reclamaciones | Registro público y gestión administrativa. El cliente con sesión ve sus reclamaciones en *Mis reclamaciones* y descarga su constancia. |
 | 17 | Auditoría | Consulta y registro de operaciones del sistema. |
-| 18 | Reportes | Visualización de información operativa y administrativa. |
+| 18 | Reportes | Visualización de información operativa y administrativa; exportación a Excel (.xlsx), CSV y PDF. |
 | 19 | Manifiestos | Consulta de información de pasajeros por viaje. |
-| 20 | Dashboard | Indicadores administrativos obtenidos desde el backend. |
+| 20 | Dashboard | Indicadores administrativos obtenidos desde la capa de lógica. |
 
 **Estado de validación:** Los módulos anteriores han sido implementados e integrados progresivamente. Esto no implica que todas las pruebas integrales finales hayan sido completadas.
 
@@ -262,6 +171,8 @@ Se ha utilizado como referencia visual la identidad de Transportes Vía S.A.C., 
 - Registro de clientes.
 - Inicio de sesión.
 - Acceso al libro de reclamaciones.
+- Condiciones del servicio y política de privacidad (`/condiciones`).
+- Terminal de embarque y de llegada en cada viaje.
 
 ### Rutas principales
 
@@ -274,6 +185,8 @@ Se ha utilizado como referencia visual la identidad de Transportes Vía S.A.C., 
 | `/viajes/publico/:viajeId/asientos` | Selección de asientos. |
 | `/cliente` | Portal privado del cliente. |
 | `/mis-reservas` | Reservas del cliente autenticado. |
+| `/mis-reclamaciones` | Reclamaciones del cliente autenticado. |
+| `/condiciones` | Condiciones del servicio vigentes. |
 | `/panel` | Panel administrativo u operativo. |
 | `/reclamaciones/publico` | Libro de reclamaciones. |
 
@@ -286,13 +199,13 @@ El sistema utiliza roles registrados en SQL Server para controlar el acceso a su
 Los perfiles contemplados son:
 
 - **ADMINISTRADOR:** gestión administrativa de los módulos autorizados.
-- **OPERADOR:** acceso a las funciones operativas habilitadas.
-- **VENTAS:** perfil contemplado en el diseño y sujeto a los permisos implementados.
+- **OPERADOR:** manifiestos de pasajeros y consulta de políticas.
+- **VENTAS:** reservas, ventas, pagos simulados, búsqueda de pasajeros por documento y consulta de políticas.
 - **CLIENTE:** consulta de viajes, reservas y funcionalidades personales.
 
 El rol no es seleccionado durante el inicio de sesión, sino recuperado desde la información del usuario autenticado.
 
-Los permisos se aplican mediante validaciones en el backend y restricciones de navegación en el frontend.
+Los permisos se aplican mediante validaciones en la capa de lógica y restricciones de navegación en la capa de presentación.
 
 ---
 
@@ -306,7 +219,7 @@ En ella se gestionan entidades relacionadas con:
 
 - Usuarios y roles.
 - Pasajeros.
-- Rutas.
+- Rutas y terminales terrestres.
 - Buses y asientos.
 - Conductores.
 - Viajes.
@@ -321,9 +234,13 @@ El esquema inicial del proyecto fue adaptado desde un modelo de datos elaborado 
 
 Durante el desarrollo se incorporaron estructuras y funcionalidades adicionales.
 
-### Script disponible
+### Scripts disponibles
 
-`database/01_esquema_sqlserver.sql`
+| Archivo | Uso |
+|---|---|
+| `database/01_esquema_sqlserver.sql` | Esquema inicial. |
+| `database/02_actualizacion_sqlserver.sql` | Agrega la tabla `Terminal`, los terminales de la ruta y la fecha de vencimiento de licencia. Se ejecuta una vez y se puede repetir sin problema. |
+| `database/RESPALDO.md` | Cómo respaldar (`npm run respaldo`) y restaurar la base (RNF8). |
 
 **Importante:** Este archivo corresponde al esquema SQL versionado en el repositorio. No debe ejecutarse sobre una base existente sin revisar previamente su contenido y contar con un respaldo actualizado. El archivo de esquema inicial no constituye por sí solo un sistema completo de migraciones incrementales.
 
@@ -333,71 +250,55 @@ Durante el desarrollo se incorporaron estructuras y funcionalidades adicionales.
 
 ```text
 SIGET-VIA/
-|
-|-- backend/
-|   |-- src/
-|   |   |-- server.js
-|   |   |-- db.js
-|   |   |-- buses.js
-|   |   |-- conductores.js
-|   |   |-- pasajeros.js
-|   |   |-- rutas.js
-|   |   |-- viajes.js
-|   |   |-- viajes-publicos.js
-|   |   |-- asientos-publicos.js
-|   |   |-- reservas.js
-|   |   |-- mis-reservas.js
-|   |   |-- ventas.js
-|   |   |-- pagos.js
-|   |   |-- reclamaciones.js
-|   |   |-- reportes.js
-|   |   |-- manifiestos.js
-|   |   |-- auditoria.js
-|   |   |-- politicas.js
-|   |   |-- perfil-cliente.js
-|   |   |-- registro-clientes.js
-|   |   |-- seed-admin.js
-|   |
-|   |-- .env.example
-|   |-- package.json
-|   |-- package-lock.json
-|
-|-- frontend/
-|   |-- public/
-|   |   |-- via-sac-logo.png
-|   |   |-- via-sac-bus-portada.png
-|   |   |-- via-sac-bus-servicios.png
-|   |
-|   |-- src/
-|   |   |-- App.tsx
-|   |   |-- ViajesPublicos.tsx
-|   |   |-- ViajesPublicos.css
-|   |   |-- AsientosPublicos.tsx
-|   |   |-- ClienteInicio.tsx
-|   |   |-- MisReservas.tsx
-|   |   |-- DashboardAdmin.tsx
-|   |   |-- Reservas.tsx
-|   |   |-- Ventas.tsx
-|   |   |-- Pagos.tsx
-|   |   |-- Viajes.tsx
-|   |   |-- Reportes.tsx
-|   |   |-- Manifiestos.tsx
-|   |   |-- main.tsx
-|   |   |-- style.css
-|   |
-|   |-- .env.example
-|   |-- index.html
-|   |-- package.json
-|   |-- package-lock.json
-|
-|-- database/
-|   |-- 01_esquema_sqlserver.sql
-|
-|-- .gitignore
-|-- README.md
+├── app/
+│   ├── presentacion/              ← CAPA DE PRESENTACIÓN (VISTA) — React + TypeScript + Vite
+│   │   ├── public/                logo e imágenes de Vía SAC
+│   │   ├── src/
+│   │   │   ├── App.tsx            rutas de la aplicación y menú por rol
+│   │   │   ├── main.tsx           punto de entrada
+│   │   │   ├── paginas/           21 pantallas (portal público, cliente y administración)
+│   │   │   ├── componentes/       alertas (SweetAlert2) y comprobante PDF
+│   │   │   ├── estilos/           hojas de estilo
+│   │   │   ├── reglas/            validaciones de formularios y reglas de la interfaz
+│   │   │   └── servicios/         comunicación con la API: http.ts, sesion.ts, api/*.api.ts
+│   │   ├── index.html · vite.config.ts · tsconfig.json
+│   │   └── package.json
+│   │
+│   ├── negocio/                   ← CAPA DE LÓGICA DE NEGOCIO — Node.js + Express
+│   │   ├── src/
+│   │   │   ├── controladores/     endpoints de la API REST /api (un archivo por módulo)
+│   │   │   ├── servicios/         reglas del negocio por módulo (validaciones Zod, estados, importes)
+│   │   │   ├── seguridad/         autenticación JWT y control de acceso por rol
+│   │   │   ├── middlewares/       manejo de errores y rutas asíncronas
+│   │   │   ├── utils/errores.js   errores de negocio con código HTTP
+│   │   │   ├── app.js             Application Factory (configura Express)
+│   │   │   └── server.js          arranque del servidor
+│   │   └── package.json
+│   │
+│   └── datos/                     ← CAPA DE ACCESO A DATOS — SQL Server
+│       ├── config/                db.js (conexión) · transaccion.js (commit/rollback)
+│       ├── repositorios/          consultas SQL parametrizadas (patrón Repository)
+│       ├── externos/              apiinti.client.js (consulta de DNI)
+│       ├── scripts/seed-admin.js  crea el administrador inicial
+│       ├── uploads/perfiles/      fotografías de perfil
+│       └── package.json           paquete siget-via-datos (mssql, msnodesqlv8)
+│
+├── config/                        ← CONFIGURACIÓN
+│   ├── .env.example               variables de entorno de las tres capas
+│   └── entorno.js                 carga config/.env
+├── database/                      ← SCRIPTS SQL
+│   └── 01_esquema_sqlserver.sql   esquema de SIGET_VIA_DB (SQL Server)
+├── tests/                         ← PRUEBAS (node --test)
+│   ├── api.test.mjs               142 casos de la API con base de datos simulada
+│   ├── capas.test.mjs             verifica que se respeten las capas
+│   ├── verificar-capas.mjs
+│   ├── apoyo/                     controlador SQL simulado
+│   └── esperado/api.json          respuestas esperadas
+├── docs/
+│   └── ARQUITECTURA.md            detalle de la arquitectura módulo por módulo
+├── package.json                   proyecto raíz (npm workspaces: instala las tres capas)
+└── README.md
 ```
-
-*Se muestran los archivos principales. El repositorio contiene otros módulos y archivos auxiliares.*
 
 ---
 
@@ -412,7 +313,7 @@ Para ejecutar el proyecto en un entorno local se necesita:
 - Visual Studio Code o un editor compatible.
 - Git, opcional para clonar y actualizar el repositorio.
 
-SQL Server debe estar configurado para aceptar las conexiones necesarias desde el backend.
+SQL Server debe estar configurado para aceptar las conexiones necesarias desde la capa de datos.
 
 ---
 
@@ -439,82 +340,66 @@ Si se trata de una instalación nueva, ejecutar el esquema después de comprobar
 
 Si ya existe una base `SIGET_VIA_DB` con datos, realizar primero un respaldo y verificar las diferencias de estructura.
 
-### Paso 3. Configurar el backend
+En todos los casos, ejecutar después `database/02_actualizacion_sqlserver.sql`.
 
-Abrir una terminal:
+### Paso 3. Configurar las variables de entorno
 
 ```powershell
-cd backend
-Copy-Item .env.example .env
-npm install
+Copy-Item config\.env.example config\.env
 ```
 
-Editar el archivo `.env` utilizando los parámetros definidos en `.env.example`.
-
-Configurar las credenciales SQL Server y un `JWT_SECRET` seguro.
+Editar `config/.env`: credenciales de SQL Server, `JWT_SECRET` seguro y, si se usa, `APIINTI_API_KEY`. Este único archivo lo leen las tres capas.
 
 **No publicar `.env` ni credenciales reales en GitHub.**
 
-Si se necesita crear una cuenta administrativa inicial en una base nueva y el script está configurado para ello:
+### Paso 4. Instalar las tres capas
+
+Desde la carpeta principal (un solo comando instala presentación, negocio y datos):
 
 ```powershell
-node src/seed-admin.js
-```
-
-Iniciar el backend:
-
-```powershell
-npm run dev
-```
-
-La API utiliza el puerto configurado en el entorno. En la configuración local empleada durante el desarrollo se utiliza:
-
-```text
-http://localhost:4000/api
-```
-
-Comprobar el endpoint:
-
-```text
-http://localhost:4000/api/health
-```
-
-### Paso 4. Configurar el frontend
-
-Desde la carpeta principal del repositorio, abrir otra terminal:
-
-```powershell
-cd frontend
-Copy-Item .env.example .env
 npm install
-npm run dev
 ```
 
-En el archivo `.env`, configurar la dirección del backend según corresponda.
-
-La aplicación normalmente se inicia en:
-
-```text
-http://localhost:5173
-```
-
-La pantalla inicial es la página pública de Vía SAC. Desde ella se puede acceder al buscador de pasajes, registro e inicio de sesión.
-
-### Paso 5. Comprobar la compilación
-
-Para verificar el frontend:
+Si se necesita crear la cuenta administrativa inicial:
 
 ```powershell
-npm run build
+npm run seed
 ```
 
-La compilación permite detectar errores de TypeScript y generación de archivos, pero no reemplaza las pruebas funcionales.
+### Paso 5. Ejecutar
+
+Terminal 1 — capa de negocio (API):
+
+```powershell
+npm run dev:api
+```
+
+API: `http://localhost:4000/api` · comprobación: `http://localhost:4000/api/health`
+
+Terminal 2 — capa de presentación:
+
+```powershell
+npm run dev:web
+```
+
+Aplicación: `http://localhost:5173`. La pantalla inicial es la página pública de Vía SAC.
+
+### Paso 6. Pruebas y compilación
+
+```powershell
+npm test              # pruebas de la API y de la arquitectura
+npm run check:capas   # solo la verificación de capas
+npm run build         # compila la capa de presentación
+npm run respaldo      # respaldo .bak de la base (ver database/RESPALDO.md)
+```
+
+Las pruebas usan una base de datos simulada; no reemplazan las pruebas con SQL Server real.
 
 ---
 
 ## 13. API REST
 
-El backend expone endpoints HTTP para la integración con el frontend.
+La capa de lógica expone endpoints HTTP para la integración con la capa de presentación.
 
 Entre las rutas desarrolladas se encuentran:
 
@@ -526,10 +411,13 @@ Entre las rutas desarrolladas se encuentran:
 | `/api/usuarios` | Administración de usuarios. |
 | `/api/pasajeros` | Gestión de pasajeros. |
 | `/api/rutas` | Gestión de rutas. |
+| `/api/terminales` | Gestión de terminales terrestres. |
 | `/api/buses` | Gestión de buses. |
 | `/api/conductores` | Gestión de conductores. |
 | `/api/viajes` | Gestión de viajes. |
 | `GET /api/publico/viajes` | Consulta pública de viajes. |
+| `GET /api/publico/condiciones` | Condiciones del servicio vigentes. |
+| `/api/cliente/mis-reclamaciones` | Reclamaciones del cliente autenticado. |
 | `/api/reservas` | Gestión de reservas. |
 | `/api/ventas` | Gestión de ventas. |
 | `/api/pagos` | Gestión de pagos. |
@@ -567,7 +455,7 @@ Estos mecanismos forman parte de la implementación actual y deben complementars
 
 El desarrollo incluye la integración de:
 
-- Frontend React con backend Express.
+- Vista en React y lógica de negocio en Express, con acceso a datos separado.
 - Backend Express con SQL Server.
 - Autenticación y roles.
 - Gestión operativa y administrativa.
@@ -585,7 +473,6 @@ El desarrollo incluye la integración de:
 - Revisar el funcionamiento conjunto de los módulos.
 - Verificar los escenarios de errores y permisos.
 - Comprobar la integridad de datos después de operaciones encadenadas.
-- Reforzar la separación interna entre negocio y acceso a datos.
 - Revisar la documentación técnica final.
 - Preparar evidencias y sustentación del proyecto.
 
@@ -595,29 +482,24 @@ El desarrollo incluye la integración de:
 
 ## 16. Enlaces de entrega — Arquitectura de tres capas
 
-Los siguientes enlaces permiten identificar el código fuente correspondiente a cada parte del sistema.
-
 ### Repositorio general
 
 https://github.com/giovannisucapuca-maker/SIGET-VIA
 
-### Directorio de vista
+### Capa de presentación (vista)
 
-https://github.com/giovannisucapuca-maker/SIGET-VIA/tree/main/frontend/src
+https://github.com/giovannisucapuca-maker/SIGET-VIA/tree/main/app/presentacion
 
-### Directorio de lógica de negocio
+### Capa de lógica de negocio
 
-https://github.com/giovannisucapuca-maker/SIGET-VIA/tree/main/backend/src
+https://github.com/giovannisucapuca-maker/SIGET-VIA/tree/main/app/negocio
 
-### Archivo de conexión y acceso a datos
+### Capa de acceso a datos
 
-https://github.com/giovannisucapuca-maker/SIGET-VIA/blob/main/backend/src/db.js
+https://github.com/giovannisucapuca-maker/SIGET-VIA/tree/main/app/datos
 
-### Archivos de configuración
-
-https://github.com/giovannisucapuca-maker/SIGET-VIA/tree/main/backend
-
-https://github.com/giovannisucapuca-maker/SIGET-VIA/tree/main/frontend
+- Conexión a SQL Server: https://github.com/giovannisucapuca-maker/SIGET-VIA/blob/main/app/datos/config/db.js
+- Repositorios: https://github.com/giovannisucapuca-maker/SIGET-VIA/tree/main/app/datos/repositorios
 
 ### Script del esquema de base de datos
 
@@ -645,7 +527,7 @@ La capa de presentación está implementada con React y TypeScript; la capa de n
 
 El proyecto incorpora módulos administrativos y de atención al cliente, así como operaciones de consulta, registro, actualización, reservas y gestión de información.
 
-El avance representa una aplicación académica integrada, en proceso de validación final y mejora de su organización interna.
+Las capas de presentación, lógica de negocio y acceso a datos están separadas en `app/presentacion`, `app/negocio` y `app/datos`, con dependencias en un solo sentido y pruebas que lo verifican. El proyecto sigue en proceso de validación final.
 
 ---
 

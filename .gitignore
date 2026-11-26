@@ -40,3 +40,10 @@ Thumbs.db
 *.pem
 *.key
 *.pfx
+
+# Archivos generados por TypeScript
+*.tsbuildinfo
+
+# Fotografías cargadas por usuarios
+app/datos/uploads/perfiles/*
+!app/datos/uploads/perfiles/.gitkeep

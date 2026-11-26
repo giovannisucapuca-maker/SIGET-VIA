@@ -1,0 +1,28 @@
+{
+  "name": "siget-via",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "SIGET-VÍA — Sistema Integrado de Gestión de Transporte Interprovincial (arquitectura de tres capas)",
+  "workspaces": [
+    "app/datos",
+    "app/negocio",
+    "app/presentacion"
+  ],
+  "scripts": {
+    "dev:api": "npm run dev -w siget-via-negocio",
+    "dev:web": "npm run dev -w siget-via-presentacion",
+    "start": "npm run start -w siget-via-negocio",
+    "build": "npm run build -w siget-via-presentacion",
+    "seed": "node app/datos/scripts/seed-admin.js",
+    "respaldo": "node app/datos/scripts/respaldar.js",
+    "test": "node --import ./tests/apoyo/registrar.mjs --test \"tests/*.test.mjs\"",
+    "check:capas": "node tests/verificar-capas.mjs"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "siget-via-datos",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "SIGET-VÍA — Capa de acceso a datos (SQL Server, repositorios, servicios externos).",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "msnodesqlv8": "^6.2.2",
+    "mssql": "^11.0.1"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

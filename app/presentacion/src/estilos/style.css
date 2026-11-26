@@ -1,0 +1,808 @@
+
+/* =====================================================
+   SIGET-VÍA — ESTILOS GENERALES
+   PASO 171 — CONSULTA PÚBLICA DE VIAJES
+   RF3 / CU003
+   ===================================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #f1f4f8;
+  color: #18324c;
+  font: 15px 'Segoe UI', Arial, sans-serif;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: 0;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* =====================================================
+   INICIO DE SESIÓN
+   ===================================================== */
+
+.login {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 33% 1fr;
+}
+
+.login-brand {
+  background: #102842;
+  color: white;
+  padding: 20vh 11%;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.login-brand h1 {
+  font-size: 36px;
+  margin: 0;
+}
+
+.login-brand p {
+  line-height: 2;
+}
+
+.login-brand strong {
+  font-weight: 500;
+}
+
+.login-main {
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.login-card {
+  width: min(100%, 430px);
+  padding: 36px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 28px #1c334a11;
+  display: grid;
+  gap: 18px;
+}
+
+.login-card h2 {
+  margin-bottom: 0;
+}
+
+.login-card p,
+.login-card small,
+.heading p,
+.section-heading p {
+  color: #718093;
+}
+
+.login-card label,
+.fields label {
+  display: grid;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.login-card input,
+.fields input,
+.fields select,
+.search-form input {
+  width: 100%;
+  border: 1px solid #dce3ea;
+  border-radius: 6px;
+  padding: 12px;
+  background: white;
+  color: #17324d;
+}
+
+/* Campo de contraseña con botón "ojo" (componentes/CampoContrasena.tsx) */
+.campo-clave {
+  position: relative;
+  display: block;
+}
+
+.campo-clave input {
+  width: 100%;
+  padding-right: 44px;
+}
+
+.campo-clave-ojo {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  background: transparent;
+  color: #5b6f84;
+}
+
+.campo-clave-ojo:hover {
+  background: #eef3f8;
+  color: #173b63;
+}
+
+/* =====================================================
+   BOTONES Y MENSAJES
+   ===================================================== */
+
+.primary,
+.orange,
+.secondary {
+  padding: 12px 18px;
+  border-radius: 5px;
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.primary,
+.secondary {
+  background: #3875a4;
+}
+
+.orange {
+  background: #f28e30;
+}
+
+.alert,
+.success {
+  padding: 12px 15px;
+  border-radius: 5px;
+  margin: 8px 0;
+}
+
+.alert {
+  background: #fff0ef;
+  color: #a33326;
+}
+
+.success {
+  background: #eaf7ee;
+  color: #247743;
+}
+
+/* =====================================================
+   ESTRUCTURA PRINCIPAL
+   ===================================================== */
+
+.app {
+  display: grid;
+  grid-template-columns: 235px 1fr;
+  min-height: 100vh;
+}
+
+aside {
+  background: #102842;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 13px;
+  gap: 36px;
+}
+
+/* =====================================================
+   LOGO Y MENÚ LATERAL
+   ===================================================== */
+
+.logo {
+  padding: 4px 12px;
+}
+
+.logo h2 {
+  font-size: 26px;
+  margin-bottom: 12px;
+}
+
+.logo small {
+  font-size: 10px;
+  color: #9cb2c7;
+}
+
+nav {
+  display: grid;
+  gap: 5px;
+}
+
+nav a {
+  padding: 12px;
+  border-radius: 5px;
+  color: #e3eaf1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+}
+
+nav a.selected,
+nav a:hover {
+  background: #f28e30;
+  color: white;
+}
+
+.side-bottom {
+  margin-top: auto;
+  display: grid;
+  gap: 13px;
+  padding: 10px;
+}
+
+.side-bottom small {
+  display: block;
+  color: #9eb4c7;
+  margin-top: 5px;
+}
+
+.side-bottom button {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  padding: 12px;
+  background: #3875a4;
+  color: white;
+}
+
+/* =====================================================
+   ÁREA DE TRABAJO
+   ===================================================== */
+
+.workspace header {
+  background: #fff;
+  padding: 22px 30px;
+  border-bottom: 1px solid #e5eaf0;
+  font-size: 13px;
+}
+
+.content {
+  padding: 36px;
+  max-width: 1500px;
+}
+
+.heading {
+  margin-bottom: 28px;
+}
+
+.heading h1 {
+  font-size: 29px;
+  margin-bottom: 8px;
+}
+
+/* =====================================================
+   PANELES Y DASHBOARD
+   ===================================================== */
+
+.panel,
+.dashboard-note {
+  background: white;
+  padding: 28px;
+  border-radius: 9px;
+  box-shadow: 0 3px 17px #22344e0c;
+}
+
+.dashboard-note {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.dashboard-note svg {
+  color: #2e8b57;
+}
+
+.dashboard-note p {
+  margin: 8px 0 0;
+}
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  align-items: center;
+}
+
+.section-heading h2 {
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
+/* =====================================================
+   BÚSQUEDAS
+   ===================================================== */
+
+.search-form {
+  display: flex;
+  gap: 12px;
+  margin: 18px 0;
+}
+
+.search-form input {
+  max-width: 400px;
+}
+
+/* =====================================================
+   TABLAS
+   ===================================================== */
+
+.table-wrap {
+  overflow: auto;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  text-align: left;
+  min-width: 850px;
+  font-size: 13px;
+}
+
+thead {
+  background: #183b5a;
+  color: white;
+}
+
+th,
+td {
+  padding: 14px;
+  border-bottom: 1px solid #e5eaf0;
+}
+
+tr:nth-child(even) {
+  background: #f7f9fb;
+}
+
+.actions {
+  white-space: nowrap;
+}
+
+.actions button {
+  color: #3474a6;
+  background: transparent;
+  padding: 6px;
+}
+
+.status {
+  border-radius: 20px;
+  padding: 5px 9px;
+  background: #fbe9e8;
+  color: #a33;
+}
+
+.status.active {
+  background: #e5f6ed;
+  color: #168352;
+}
+
+/* =====================================================
+   VENTANAS MODALES
+   ===================================================== */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: #00172b9e;
+  display: grid;
+  place-items: center;
+  padding: 14px;
+  z-index: 20;
+}
+
+.dialog {
+  background: white;
+  width: min(690px, 100%);
+  max-height: 95vh;
+  overflow: auto;
+  border-radius: 9px;
+}
+
+.dialog-head {
+  background: #183b5a;
+  color: white;
+  padding: 22px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dialog-head h2 {
+  margin: 0;
+}
+
+.dialog-head button {
+  background: transparent;
+  color: white;
+}
+
+.dialog form {
+  padding: 28px;
+}
+
+.fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.dialog-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.loader {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+}
+
+/* =====================================================
+   PASO 171 — CONSULTA PÚBLICA DE VIAJES
+   RF3 / CU003
+   ===================================================== */
+
+.publico-viajes {
+  min-height: 100vh;
+  background: #f1f4f8;
+  color: #18324c;
+  padding: 0 20px 35px;
+}
+
+/* CABECERA PÚBLICA */
+
+.publico-top {
+  max-width: 1100px;
+  margin: auto;
+  padding: 28px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.publico-top h1 {
+  margin: 0;
+  color: #173b63;
+}
+
+.publico-top p {
+  margin: 6px 0 0;
+  color: #637a90;
+}
+
+.publico-top a,
+.publico-footer a {
+  color: #246b9c;
+  font-weight: 600;
+}
+
+/* CONTENEDOR PÚBLICO */
+
+.publico-card {
+  max-width: 1100px;
+  margin: 0 auto 22px;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 28px;
+  box-shadow: 0 3px 18px #22344e10;
+}
+
+.publico-card > p {
+  color: #637a90;
+}
+
+/* FORMULARIO DE BÚSQUEDA */
+
+.publico-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr auto;
+  gap: 12px;
+  align-items: end;
+}
+
+.publico-form label {
+  display: grid;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.publico-form input {
+  border: 1px solid #dce3ea;
+  border-radius: 6px;
+  padding: 12px;
+  min-width: 0;
+  width: 100%;
+}
+
+/* RESULTADOS DE VIAJES */
+
+.publico-results {
+  display: grid;
+  gap: 12px;
+}
+
+.publico-viaje {
+  border: 1px solid #dce3ea;
+  border-radius: 8px;
+  padding: 18px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.publico-viaje p {
+  margin: 8px 0 0;
+  color: #60778d;
+}
+
+.publico-viaje small {
+  color: #60778d;
+}
+
+/* PIE DE PÁGINA */
+
+.publico-footer {
+  text-align: center;
+  padding: 10px;
+}
+
+/* =====================================================
+   DISEÑO RESPONSIVE ORIGINAL
+   ===================================================== */
+
+@media (max-width: 850px) {
+  .app {
+    grid-template-columns: 1fr;
+  }
+
+  aside {
+    gap: 12px;
+  }
+
+  nav {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .side-bottom {
+    margin-top: 0;
+  }
+
+  .content {
+    padding: 18px;
+  }
+
+  .login {
+    grid-template-columns: 1fr;
+  }
+
+  .login-brand {
+    padding: 35px;
+  }
+
+  .login-brand h1 {
+    font-size: 28px;
+  }
+
+  .fields {
+    grid-template-columns: 1fr;
+  }
+
+  .section-heading {
+    align-items: flex-start;
+  }
+}
+
+/* RESPONSIVE DE CONSULTA PÚBLICA */
+
+@media (max-width: 760px) {
+  .publico-form {
+    grid-template-columns: 1fr;
+  }
+
+  .publico-viaje {
+    flex-direction: column;
+  }
+
+  .publico-top {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 500px) {
+  nav {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .search-form {
+    flex-direction: column;
+  }
+}
+
+/* =====================================================
+   FIN — SIGET-VÍA PASO 171
+   ===================================================== */
+
+/* Accesos rápidos del inicio del personal de ventas y del operador */
+.inicio-accesos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 14px;
+  margin: 8px 0 22px;
+}
+
+.inicio-acceso {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px;
+  background: #ffffff;
+  border: 1px solid #dce3ea;
+  border-radius: 10px;
+  color: #173b63;
+  font-weight: 700;
+  text-decoration: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.inicio-acceso:hover {
+  border-color: #f28e30;
+  box-shadow: 0 4px 14px rgba(23, 59, 99, 0.08);
+}
+
+/* Etapas de una reclamación (Mis reclamaciones) */
+.etapas-reclamo {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 18px;
+}
+
+.etapas-reclamo li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px;
+  border-radius: 8px;
+  background: #f1f5f9;
+  color: #64748b;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.etapas-reclamo li.hecha {
+  background: #e8f6ee;
+  color: #1d6b42;
+}
+
+@media (max-width: 640px) {
+  .etapas-reclamo {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Página pública de condiciones del servicio (CU017) */
+.condiciones {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 32px 20px 60px;
+}
+
+.condiciones h1 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #173b63;
+}
+
+.condiciones-intro {
+  color: #5b6f84;
+  margin-bottom: 20px;
+}
+
+.condiciones-indice {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.condiciones-indice a {
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: #eef3f8;
+  color: #173b63;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.condiciones-seccion {
+  background: #ffffff;
+  border: 1px solid #dce3ea;
+  border-radius: 12px;
+  padding: 20px 22px;
+  margin-bottom: 16px;
+  scroll-margin-top: 16px;
+}
+
+.condiciones-seccion h2 {
+  margin: 0 0 10px;
+  color: #173b63;
+  font-size: 19px;
+}
+
+.condiciones-seccion h3 {
+  margin: 14px 0 2px;
+  font-size: 15px;
+}
+
+.condiciones-seccion small {
+  color: #718093;
+}
+
+.condiciones-seccion p {
+  white-space: pre-wrap;
+  line-height: 1.55;
+}
+
+.condiciones-vacio {
+  color: #718093;
+  font-style: italic;
+}
+
+.condiciones-acciones {
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+.condiciones-nota {
+  text-align: center;
+  color: #94a3b8;
+  font-size: 12px;
+}
+
+/* Texto secundario dentro de una celda (p. ej. terminal debajo de la ciudad) */
+td small.sub {
+  display: block;
+  color: #718093;
+  font-size: 12px;
+  margin-top: 2px;
+}

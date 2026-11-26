@@ -1,0 +1,1839 @@
+[
+ {
+  "nombre": "health",
+  "status": 200,
+  "cuerpo": {
+   "status": "ok",
+   "database": "connected"
+  }
+ },
+ {
+  "nombre": "404",
+  "status": 404,
+  "cuerpo": {
+   "error": "Ruta no encontrada"
+  }
+ },
+ {
+  "nombre": "login body inválido",
+  "status": 400,
+  "cuerpo": {
+   "error": "Datos inválidos",
+   "details": "<zod>"
+  }
+ },
+ {
+  "nombre": "login ok",
+  "status": 200,
+  "cuerpo": {
+   "token": "<jwt>",
+   "usuario": {
+    "UsuarioID": 1,
+    "RolID": 1,
+    "Rol": "ADMINISTRADOR",
+    "Nombres": "Ana",
+    "Apellidos": "Admin",
+    "Correo": "admin@x.com"
+   }
+  }
+ },
+ {
+  "nombre": "login clave mala",
+  "status": 401,
+  "cuerpo": {
+   "error": "Credenciales inválidas"
+  }
+ },
+ {
+  "nombre": "me sin token",
+  "status": 401,
+  "cuerpo": {
+   "error": "Autenticación requerida"
+  }
+ },
+ {
+  "nombre": "me token malo",
+  "status": 401,
+  "cuerpo": {
+   "error": "Sesión inválida o vencida"
+  }
+ },
+ {
+  "nombre": "me ok",
+  "status": 200,
+  "cuerpo": {
+   "usuario": {
+    "UsuarioID": 2,
+    "RolID": 3,
+    "Rol": "CLIENTE",
+    "Nombres": "Carlos",
+    "Apellidos": "Cliente",
+    "Correo": "cli@x.com",
+    "Estado": "ACTIVO"
+   }
+  }
+ },
+ {
+  "nombre": "roles cliente 403",
+  "status": 403,
+  "cuerpo": {
+   "error": "No autorizado"
+  }
+ },
+ {
+  "nombre": "roles admin",
+  "status": 200,
+  "cuerpo": [
+   {
+    "RolID": 1,
+    "Nombre": "ADMINISTRADOR"
+   },
+   {
+    "RolID": 3,
+    "Nombre": "CLIENTE"
+   }
+  ]
+ },
+ {
+  "nombre": "usuarios listar",
+  "status": 200,
+  "cuerpo": [
+   {
+    "UsuarioID": 1,
+    "RolID": 1,
+    "Rol": "ADMINISTRADOR",
+    "Nombres": "Ana",
+    "Apellidos": "Admin",
+    "Correo": "admin@x.com",
+    "Estado": "ACTIVO"
+   }
+  ]
+ },
+ {
+  "nombre": "usuarios crear ok",
+  "status": 201,
+  "cuerpo": {
+   "UsuarioID": 99,
+   "mensaje": "Usuario registrado correctamente"
+  }
+ },
+ {
+  "nombre": "usuarios crear rol malo",
+  "status": 400,
+  "cuerpo": {
+   "error": "Rol no válido"
+  }
+ },
+ {
+  "nombre": "usuarios crear duplicado",
+  "status": 409,
+  "cuerpo": {
+   "error": "Ya existe un registro con esos datos únicos"
+  }
+ },
+ {
+  "nombre": "usuarios crear inválido",
+  "status": 400,
+  "cuerpo": {
+   "error": "Datos inválidos",
+   "details": "<zod>"
+  }
+ },
+ {
+  "nombre": "usuarios editar propio rol",
+  "status": 400,
+  "cuerpo": {
+   "error": "No puedes desactivar tu cuenta ni cambiar tu rol"
+  }
+ },
+ {
+  "nombre": "usuarios editar ok",
+  "status": 200,
+  "cuerpo": {
+   "ok": true,
+   "mensaje": "Usuario actualizado correctamente"
+  }
+ },
+ {
+  "nombre": "usuarios editar 404",
+  "status": 404,
+  "cuerpo": {
+   "error": "Usuario no encontrado"
+  }
+ },
+ {
+  "nombre": "usuarios estado propio",
+  "status": 400,
+  "cuerpo": {
+   "error": "No puedes cambiar el estado de tu propia cuenta"
+  }
+ },
+ {
+  "nombre": "usuarios estado igual",
+  "status": 400,
+  "cuerpo": {
+   "error": "El usuario ya tiene el estado seleccionado"
+  }
+ },
+ {
+  "nombre": "usuarios estado ok",
+  "status": 200,
+  "cuerpo": {
+   "ok": true,
+   "mensaje": "Estado actualizado correctamente"
+  }
+ },
+ {
+  "nombre": "usuarios estado 404",
+  "status": 404,
+  "cuerpo": {
+   "error": "Usuario no encontrado"
+  }
+ },
+ {
+  "nombre": "viajes públicos filtro malo",
+  "status": 400,
+  "cuerpo": {
+   "error": "Filtros de búsqueda inválidos."
+  }
+ },
+ {
+  "nombre": "viajes públicos fecha pasada",
+  "status": 400,
+  "cuerpo": {
+   "error": "La fecha de viaje no puede ser anterior a hoy."
+  }
+ },
+ {
+  "nombre": "viajes públicos ok",
+  "status": 200,
+  "cuerpo": [
+   {
+    "ViajeID": 5,
+    "Origen": "LIMA",
+    "Destino": "ICA",
+    "TerminalOrigen": null,
+    "DireccionOrigen": null,
+    "TerminalDestino": null,
+    "DireccionDestino": null,
+    "Salida": "2030-01-01T10:00:00Z",
+    "LlegadaEstimada": null,
+    "Tarifa": 50,
+    "BusID": 1,
+    "Placa": "ABC-123",
+    "Modelo": "X",
+    "Capacidad": 40,
+    "TipoServicioID": 1,
+    "TipoServicio": "VIP",
+    "AsientosRegistrados": 40,
+    "AsientosOcupados": 3,
+    "AsientosDisponibles": 37
+   }
+  ]
+ },
+ {
+  "nombre": "asientos públicos id malo",
+  "status": 400,
+  "cuerpo": {
+   "error": "Identificador de viaje inválido."
+  }
+ },
+ {
+  "nombre": "asientos públicos 404",
+  "status": 404,
+  "cuerpo": {
+   "error": "El viaje no existe o no está disponible."
+  }
+ },
+ {
+  "nombre": "asientos públicos ok",
+  "status": 200,
+  "cuerpo": {
+   "viaje": {
+    "ViajeID": 5,
+    "Origen": "LIMA",
+    "Destino": "ICA",
+    "TerminalOrigen": null,
+    "DireccionOrigen": null,
+    "TerminalDestino": null,
+    "DireccionDestino": null,
+    "Salida": "x",
+    "LlegadaEstimada": "y",
+    "Tarifa": 50,
+    "BusID": 1,
+    "Placa": "P",
+    "Modelo": "M",
+    "Capacidad": 4,
+    "TipoServicioID": null,
+    "TipoServicio": null,
+    "DescripcionServicio": null
+   },
+   "totalAsientos": 3,
+   "asientosDisponibles": 2,
+   "asientosOcupados": 1,
+   "pisos": [
+    {
+     "Nivel": 1,
+     "TotalAsientos": 2,
+     "AsientosDisponibles": 1,
+     "AsientosOcupados": 1
+    },
+    {
+     "Nivel": 2,
+     "TotalAsientos": 1,
+     "AsientosDisponibles": 1,
+     "AsientosOcupados": 0
+    }
+   ],
+   "asientos": [
+    {
+     "AsientoID": 1,
+     "Numero": 1,
+     "Nivel": 1,
+     "Ocupado": true
+    },
+    {
+     "AsientoID": 2,
+     "Numero": 2,
+     "Nivel": 1,
+     "Ocupado": false
+    },
+    {
+     "AsientoID": 3,
+     "Numero": 3,
+     "Nivel": 2,
+     "Ocupado": false
+    }
+   ]
+  }
+ },
+ {
+  "nombre": "registro inválido",
+  "status": 400,
+  "cuerpo": {
+   "error": "String must contain at least 2 character(s)"
+  }
+ },
+ {
+  "nombre": "registro ok",
+  "status": 201,
+  "cuerpo": {
+   "mensaje": "Cuenta creada correctamente. Ya puedes iniciar sesión.",
+   "usuario": {
+    "UsuarioID": 99,
+    "Nombres": "Luis",
+    "Apellidos": "Rojas",
+    "Correo": "luis@x.com",
+    "Rol": "CLIENTE"
+   }
+  }
+ },
+ {
+  "nombre": "registro duplicado",
+  "status": 409,
+  "cuerpo": {
+   "error": "Ya existe una cuenta con este correo."
+  }
+ },
+ {
+  "nombre": "registro sin rol",
+  "status": 503,
+  "cuerpo": {
+   "error": "El registro de clientes no está disponible."
+  }
+ },
+ {
+  "nombre": "mis reservas admin 403",
+  "status": 403,
+  "cuerpo": {
+   "error": "Disponible únicamente para clientes."
+  }
+ },
+ {
+  "nombre": "mis reservas",
+  "status": 200,
+  "cuerpo": [
+   {
+    "ReservaID": 1,
+    "Codigo": "R1"
+   }
+  ]
+ },
+ {
+  "nombre": "mis reservas id malo",
+  "status": 400,
+  "cuerpo": {
+   "error": "Identificador inválido."
+  }
+ },
+ {
+  "nombre": "mis reservas 404",
+  "status": 404,
+  "cuerpo": {
+   "error": "Reserva no encontrada."
+  }
+ },
+ {
+  "nombre": "mis reservas detalle",
+  "status": 200,
+  "cuerpo": {
+   "ReservaID": 1,
+   "Codigo": "R1",
+   "items": [
+    {
+     "ReservaAsientoID": 1,
+     "Numero": "1"
+    }
+   ]
+  }
+ },
+ {
+  "nombre": "perfil admin 403",
+  "status": 403,
+  "cuerpo": {
+   "error": "Acceso exclusivo para clientes."
+  }
+ },
+ {
+  "nombre": "perfil put inválido",
+  "status": 400,
+  "cuerpo": {
+   "error": "String must contain at least 2 character(s)"
+  }
+ },
+ {
+  "nombre": "perfil put correo otro",
+  "status": 409,
+  "cuerpo": {
+   "error": "El correo ya está registrado por otra cuenta."
+  }
+ },
+ {
+  "nombre": "perfil put ok",
+  "status": 200,
+  "cuerpo": {
+   "usuario": {
+    "UsuarioID": 2,
+    "Nombres": "Carlos",
+    "Apellidos": "Cli",
+    "Correo": "c@x.com",
+    "Telefono": "999"
+   },
+   "mensaje": "Perfil actualizado correctamente."
+  }
+ },
+ {
+  "nombre": "dni admin 403",
+  "status": 403,
+  "cuerpo": {
+   "error": "Solo los clientes activos pueden utilizar esta consulta."
+  }
+ },
+ {
+  "nombre": "dni sin autorización",
+  "status": 400,
+  "cuerpo": {
+   "error": "Debes confirmar que cuentas con autorización del titular del documento."
+  }
+ },
+ {
+  "nombre": "dni malo",
+  "status": 400,
+  "cuerpo": {
+   "error": "El DNI debe tener exactamente 8 dígitos."
+  }
+ },
+ {
+  "nombre": "dni sin clave",
+  "status": 503,
+  "cuerpo": {
+   "error": "El servicio de consulta de DNI no está configurado."
+  }
+ },
+ {
+  "nombre": "manifiestos cliente 403",
+  "status": 403,
+  "cuerpo": {
+   "error": "No tienes permisos para consultar manifiestos."
+  }
+ },
+ {
+  "nombre": "manifiestos fecha mala",
+  "status": 400,
+  "cuerpo": {
+   "error": "La fecha de consulta no es válida."
+  }
+ },
+ {
+  "nombre": "manifiestos viajes",
+  "status": 200,
+  "cuerpo": [
+   {
+    "ViajeID": 5,
+    "TotalPasajeros": 2,
+    "q": "%lima%",
+    "fecha": "2026-01-01"
+   }
+  ]
+ },
+ {
+  "nombre": "manifiesto 404",
+  "status": 404,
+  "cuerpo": {
+   "error": "El viaje no existe."
+  }
+ },
+ {
+  "nombre": "manifiesto id malo",
+  "status": 400,
+  "cuerpo": {
+   "error": "El identificador del viaje no es válido."
+  }
+ },
+ {
+  "nombre": "manifiesto ok",
+  "status": 200,
+  "cuerpo": {
+   "viaje": {
+    "ViajeID": 5,
+    "Capacidad": 40
+   },
+   "pasajeros": [
+    {
+     "ReservaAsientoID": 1
+    },
+    {
+     "ReservaAsientoID": 2
+    }
+   ],
+   "resumen": {
+    "totalPasajeros": 2,
+    "totalAsientos": 40,
+    "asientosDisponibles": 38
+   }
+  }
+ },
+ {
+  "nombre": "políticas catálogos",
+  "status": 200,
+  "cuerpo": {
+   "tipos": [
+    "RESERVA",
+    "CANCELACION",
+    "REPROGRAMACION",
+    "CONTRATACION",
+    "PRIVACIDAD",
+    "OTRA"
+   ]
+  }
+ },
+ {
+  "nombre": "políticas vigentes",
+  "status": 200,
+  "cuerpo": [
+   {
+    "PoliticaID": 10,
+    "Tipo": "RESERVA",
+    "Titulo": "Política RESERVA",
+    "Contenido": "Contenido largo de la política RESERVA",
+    "Version": "1.0",
+    "VigenteDesde": "2026-01-01",
+    "VigenteHasta": null
+   },
+   {
+    "PoliticaID": 11,
+    "Tipo": "CANCELACION",
+    "Titulo": "Política CANCELACION",
+    "Contenido": "Contenido largo de la política CANCELACION",
+    "Version": "1.0",
+    "VigenteDesde": "2026-01-01",
+    "VigenteHasta": null
+   },
+   {
+    "PoliticaID": 12,
+    "Tipo": "REPROGRAMACION",
+    "Titulo": "Política REPROGRAMACION",
+    "Contenido": "Contenido largo de la política REPROGRAMACION",
+    "Version": "1.0",
+    "VigenteDesde": "2026-01-01",
+    "VigenteHasta": null
+   },
+   {
+    "PoliticaID": 13,
+    "Tipo": "CONTRATACION",
+    "Titulo": "Política CONTRATACION",
+    "Contenido": "Contenido largo de la política CONTRATACION",
+    "Version": "1.0",
+    "VigenteDesde": "2026-01-01",
+    "VigenteHasta": null
+   },
+   {
+    "PoliticaID": 14,
+    "Tipo": "PRIVACIDAD",
+    "Titulo": "Política PRIVACIDAD",
+    "Contenido": "Contenido largo de la política PRIVACIDAD",
+    "Version": "1.0",
+    "VigenteDesde": "2026-01-01",
+    "VigenteHasta": null
+   }
+  ]
+ },
+ {
+  "nombre": "políticas listar cliente 403",
+  "status": 403,
+  "cuerpo": {
+   "error": "No autorizado"
+  }
+ },
+ {
+  "nombre": "políticas listar",
+  "status": 200,
+  "cuerpo": [
+   {
+    "PoliticaID": 10,
+    "Tipo": "RESERVA",
+    "Titulo": "Política RESERVA",
+    "Contenido": "Contenido largo de la política RESERVA",
+    "Version": "1.0",
+    "VigenteDesde": "2026-01-01",
+    "VigenteHasta": null
+   }
+  ]
+ },
+ {
+  "nombre": "políticas crear",
+  "status": 201,
+  "cuerpo": {
+   "PoliticaID": 77,
+   "mensaje": "Política registrada correctamente."
+  }
+ },
+ {
+  "nombre": "políticas crear fechas malas",
+  "status": 400,
+  "cuerpo": {
+   "error": "Datos inválidos",
+   "details": "<zod>"
+  }
+ },
+ {
+  "nombre": "políticas editar 404",
+  "status": 404,
+  "cuerpo": {
+   "error": "Política no encontrada."
+  }
+ },
+ {
+  "nombre": "políticas editar",
+  "status": 200,
+  "cuerpo": {
+   "ok": true,
+   "mensaje": "Política actualizada correctamente."
+  }
+ },
+ {
+  "nombre": "políticas estado igual",
+  "status": 400,
+  "cuerpo": {
+   "error": "La política ya tiene ese estado."
+  }
+ },
+ {
+  "nombre": "políticas estado ok",
+  "status": 200,
+  "cuerpo": {
+   "ok": true,
+   "mensaje": "Estado de política actualizado."
+  }
+ },
+ {
+  "nombre": "políticas estado 404",
+  "status": 404,
+  "cuerpo": {
+   "error": "Política no encontrada."
+  }
+ },
+ {
+  "nombre": "reclamo público ok",
+  "status": 201,
+  "cuerpo": {
+   "ReclamacionID": 31,
+   "NumeroCorrelativo": "REC-0000000031",
+   "TipoSolicitud": "RECLAMO",
+   "FechaRegistro": "f",
+   "Estado": "REGISTRADO",
+   "codigoPrivado": "<8chars>",
+   "mensaje": "Reclamación registrada correctamente. Guarde su código privado de consulta."
+  }
+ },
+ {
+  "nombre": "reclamo público con usuarioId",
+  "status": 400,
+  "cuerpo": {
+   "error": "Datos inválidos",
+   "details": "<zod>"
+  }
+ },
+ {
+  "nombre": "reclamo consulta mala",
+  "status": 400,
+  "cuerpo": {
+   "error": "Datos inválidos",
+   "details": "<zod>"
+  }
+ },
+ {
+  "nombre": "reclamo consulta 404",
+  "status": 404,
+  "cuerpo": {
+   "error": "No se encontró una reclamación con esas credenciales."
+  }
+ },
+ {
+  "nombre": "reclamo consulta ok",
+  "status": 200,
+  "cuerpo": {
+   "reclamacion": {
+    "ReclamacionID": 31,
+    "NumeroCorrelativo": "REC-0000000031",
+    "TipoSolicitud": "QUEJA",
+    "FechaRegistro": "f",
+    "Estado": "RESPONDIDO"
+   },
+   "historial": [
+    {
+     "EstadoNuevo": "REGISTRADO"
+    }
+   ],
+   "respuestas": [
+    {
+     "Contenido": "ok"
+    }
+   ]
+  }
+ },
+ {
+  "nombre": "reclamos catálogos",
+  "status": 200,
+  "cuerpo": {
+   "estados": [
+    "REGISTRADO",
+    "EN_ATENCION",
+    "RESPONDIDO",
+    "CERRADO"
+   ],
+   "tipos": [
+    "RECLAMO",
+    "QUEJA"
+   ]
+  }
+ },
+ {
+  "nombre": "reclamos resumen",
+  "status": 200,
+  "cuerpo": {
+   "Total": 3
+  }
+ },
+ {
+  "nombre": "reclamos listar estado malo",
+  "status": 400,
+  "cuerpo": {
+   "error": "Estado de reclamación inválido."
+  }
+ },
+ {
+  "nombre": "reclamos listar",
+  "status": 200,
+  "cuerpo": [
+   {
+    "ReclamacionID": 31,
+    "estado": "CERRADO",
+    "tipo": "QUEJA"
+   }
+  ]
+ },
+ {
+  "nombre": "reclamo detalle 404",
+  "status": 404,
+  "cuerpo": {
+   "error": "Reclamación no encontrada."
+  }
+ },
+ {
+  "nombre": "reclamo detalle",
+  "status": 200,
+  "cuerpo": {
+   "reclamacion": {
+    "ReclamacionID": 31
+   },
+   "respuestas": [
+    {
+     "RespuestaID": 1
+    }
+   ],
+   "historial": [
+    {
+     "HistorialID": 1
+    }
+   ]
+  }
+ },
+ {
+  "nombre": "reclamo admin crear",
+  "status": 201,
+  "cuerpo": {
+   "ReclamacionID": 31,
+   "NumeroCorrelativo": "REC-0000000031",
+   "FechaRegistro": "f",
+   "Estado": "REGISTRADO",
+   "mensaje": "Reclamación registrada correctamente."
+  }
+ },
+ {
+  "nombre": "reclamo admin usuario inexistente",
+  "status": 400,
+  "cuerpo": {
+   "error": "El usuario vinculado no existe."
+  }
+ },
+ {
+  "nombre": "reclamo admin reserva ajena",
+  "status": 201,
+  "cuerpo": {
+   "ReclamacionID": 31,
+   "NumeroCorrelativo": "REC-0000000031",
+   "FechaRegistro": "f",
+   "Estado": "REGISTRADO",
+   "mensaje": "Reclamación registrada correctamente."
+  }
+ },
+ {
+  "nombre": "reclamo estado transición mala",
+  "status": 409,
+  "cuerpo": {
+   "error": "No se permite cambiar de REGISTRADO a CERRADO."
+  }
+ },
+ {
+  "nombre": "reclamo estado igual",
+  "status": 400,
+  "cuerpo": {
+   "error": "La reclamación ya tiene ese estado."
+  }
+ },
+ {
+  "nombre": "reclamo estado sin respuesta",
+  "status": 400,
+  "cuerpo": {
+   "error": "Primero registra una respuesta."
+  }
+ },
+ {
+  "nombre": "reclamo estado ok",
+  "status": 200,
+  "cuerpo": {
+   "ok": true,
+   "ReclamacionID": 31,
+   "EstadoAnterior": "REGISTRADO",
+   "EstadoNuevo": "EN_ATENCION",
+   "mensaje": "Estado actualizado correctamente."
+  }
+ },
+ {
+  "nombre": "reclamo estado 404",
+  "status": 404,
+  "cuerpo": {
+   "error": "Reclamación no encontrada."
+  }
+ },
+ {
+  "nombre": "reclamo respuesta estado malo",
+  "status": 409,
+  "cuerpo": {
+   "error": "La reclamación debe estar EN_ATENCION para registrar una respuesta."
+  }
+ },
+ {
+  "nombre": "reclamo respuesta ok",
+  "status": 201,
+  "cuerpo": {
+   "RespuestaID": 8,
+   "ReclamacionID": 31,
+   "Estado": "RESPONDIDO",
+   "mensaje": "Respuesta registrada correctamente."
+  }
+ },
+ {
+  "nombre": "reservas políticas vigentes",
+  "status": 200,
+  "cuerpo": [
+   {
+    "PoliticaID": 10,
+    "Tipo": "RESERVA",
+    "Titulo": "Política RESERVA",
+    "Contenido": "Contenido largo de la política RESERVA",
+    "Version": "1.0",
+    "VigenteDesde": "2026-01-01",
+    "VigenteHasta": null
+   },
+   {
+    "PoliticaID": 11,
+    "Tipo": "CANCELACION",
+    "Titulo": "Política CANCELACION",
+    "Contenido": "Contenido largo de la política CANCELACION",
+    "Version": "1.0",
+    "VigenteDesde": "2026-01-01",
+    "VigenteHasta": null
+   },
+   {
+    "PoliticaID": 12,
+    "Tipo": "REPROGRAMACION",
+    "Titulo": "Política REPROGRAMACION",
+    "Contenido": "Contenido largo de la política REPROGRAMACION",
+    "Version": "1.0",
+    "VigenteDesde": "2026-01-01",
+    "VigenteHasta": null
+   },
+   {
+    "PoliticaID": 13,
+    "Tipo": "CONTRATACION",
+    "Titulo": "Política CONTRATACION",
+    "Contenido": "Contenido largo de la política CONTRATACION",
+    "Version": "1.0",
+    "VigenteDesde": "2026-01-01",
+    "VigenteHasta": null
+   },
+   {
+    "PoliticaID": 14,
+    "Tipo": "PRIVACIDAD",
+    "Titulo": "Política PRIVACIDAD",
+    "Contenido": "Contenido largo de la política PRIVACIDAD",
+    "Version": "1.0",
+    "VigenteDesde": "2026-01-01",
+    "VigenteHasta": null
+   }
+  ]
+ },
+ {
+  "nombre": "reservas políticas faltan",
+  "status": 409,
+  "cuerpo": {
+   "error": "Faltan políticas obligatorias activas y vigentes."
+  }
+ },
+ {
+  "nombre": "reserva operador 403",
+  "status": 403,
+  "cuerpo": {
+   "error": "Tu cuenta no puede crear reservas."
+  }
+ },
+ {
+  "nombre": "reserva inválida",
+  "status": 400,
+  "cuerpo": {
+   "error": "Array must contain at least 1 element(s)"
+  }
+ },
+ {
+  "nombre": "reserva doc malo",
+  "status": 400,
+  "cuerpo": {
+   "error": "El DNI debe tener exactamente 8 números."
+  }
+ },
+ {
+  "nombre": "reserva ok",
+  "status": 201,
+  "cuerpo": {
+   "ReservaID": 900,
+   "Codigo": "RSV-900",
+   "Total": 100,
+   "CantidadAsientos": 2,
+   "PoliticaID": 10,
+   "TotalAceptaciones": 5,
+   "mensaje": "Reserva registrada correctamente."
+  }
+ },
+ {
+  "nombre": "reserva políticas cambiaron",
+  "status": 409,
+  "cuerpo": {
+   "error": "Las políticas cambiaron. Revísalas y confirma nuevamente."
+  }
+ },
+ {
+  "nombre": "reserva viaje 404",
+  "status": 404,
+  "cuerpo": {
+   "error": "Viaje no encontrado."
+  }
+ },
+ {
+  "nombre": "reserva viaje no programado",
+  "status": 409,
+  "cuerpo": {
+   "error": "El viaje no admite nuevas reservas."
+  }
+ },
+ {
+  "nombre": "reserva vencida",
+  "status": 409,
+  "cuerpo": {
+   "error": "La fecha de salida del viaje ya venció."
+  }
+ },
+ {
+  "nombre": "reserva asiento ajeno",
+  "status": 400,
+  "cuerpo": {
+   "error": "Uno o más asientos no pertenecen al bus."
+  }
+ },
+ {
+  "nombre": "reserva asiento ocupado",
+  "status": 409,
+  "cuerpo": {
+   "error": "Uno o más asientos ya están reservados."
+  }
+ },
+ {
+  "nombre": "reserva pasajero inactivo",
+  "status": 409,
+  "cuerpo": {
+   "error": "El pasajero consultado está INACTIVO."
+  }
+ },
+ {
+  "nombre": "reserva pasajero nuevo sin fecha",
+  "status": 400,
+  "cuerpo": {
+   "error": "Ingresa la fecha de nacimiento del pasajero nuevo."
+  }
+ },
+ {
+  "nombre": "reserva duplicado SQL",
+  "status": 409,
+  "cuerpo": {
+   "error": "Existe un documento, asiento o pasajero duplicado."
+  }
+ },
+ {
+  "nombre": "reservas catálogos cliente 403",
+  "status": 403,
+  "cuerpo": {
+   "error": "No autorizado"
+  }
+ },
+ {
+  "nombre": "reservas catálogos",
+  "status": 200,
+  "cuerpo": {
+   "viajes": [
+    {
+     "ViajeID": 5
+    }
+   ],
+   "pasajeros": [
+    {
+     "PasajeroID": 1
+    }
+   ]
+  }
+ },
+ {
+  "nombre": "reservas asientos 404",
+  "status": 404,
+  "cuerpo": {
+   "error": "Viaje no encontrado."
+  }
+ },
+ {
+  "nombre": "reservas asientos",
+  "status": 200,
+  "cuerpo": {
+   "viaje": {
+    "ViajeID": 5,
+    "BusID": 1
+   },
+   "asientos": [
+    {
+     "AsientoID": 1,
+     "BusID": 1,
+     "Numero": "1",
+     "Nivel": 1,
+     "Ocupado": true
+    },
+    {
+     "AsientoID": 2,
+     "BusID": 1,
+     "Numero": "2",
+     "Nivel": 1,
+     "Ocupado": false
+    },
+    {
+     "AsientoID": 3,
+     "BusID": 1,
+     "Numero": "3",
+     "Nivel": 2,
+     "Ocupado": false
+    }
+   ]
+  }
+ },
+ {
+  "nombre": "reservas listar",
+  "status": 200,
+  "cuerpo": [
+   {
+    "ReservaID": 1,
+    "q": "%abc%"
+   }
+  ]
+ },
+ {
+  "nombre": "reserva historial 404",
+  "status": 404,
+  "cuerpo": {
+   "error": "Reserva no encontrada."
+  }
+ },
+ {
+  "nombre": "reserva historial",
+  "status": 200,
+  "cuerpo": {
+   "ReservaID": 1,
+   "Codigo": "R1",
+   "Estado": "COMPLETADA",
+   "TotalMovimientos": 2,
+   "historial": [
+    {
+     "ReservaID": 1,
+     "Accion": "CREACION",
+     "UsuarioResponsableID": 1,
+     "Responsable": "Ana"
+    },
+    {
+     "ReservaID": 1,
+     "Accion": "X",
+     "UsuarioResponsableID": 9,
+     "Responsable": "Usuario 9"
+    }
+   ]
+  }
+ },
+ {
+  "nombre": "reserva detalle 404",
+  "status": 404,
+  "cuerpo": {
+   "error": "Reserva no encontrada."
+  }
+ },
+ {
+  "nombre": "reserva detalle",
+  "status": 200,
+  "cuerpo": {
+   "ReservaID": 1,
+   "items": [
+    {
+     "ReservaAsientoID": 71
+    }
+   ]
+  }
+ },
+ {
+  "nombre": "cancelar 404",
+  "status": 404,
+  "cuerpo": {
+   "error": "Reserva no encontrada."
+  }
+ },
+ {
+  "nombre": "cancelar ya cancelada",
+  "status": 409,
+  "cuerpo": {
+   "error": "Esta reserva ya está cancelada."
+  }
+ },
+ {
+  "nombre": "cancelar venta vigente",
+  "status": 409,
+  "cuerpo": {
+   "error": "La reserva tiene una venta vigente. Anúlala primero desde Ventas."
+  }
+ },
+ {
+  "nombre": "cancelar pago inconsistente",
+  "status": 409,
+  "cuerpo": {
+   "error": "La venta anulada tiene pagos pendientes o inconsistentes."
+  }
+ },
+ {
+  "nombre": "cancelar ok",
+  "status": 200,
+  "cuerpo": {
+   "ReservaID": 1,
+   "Estado": "CANCELADA",
+   "AsientosLiberados": 2,
+   "mensaje": "Reserva cancelada correctamente."
+  }
+ },
+ {
+  "nombre": "editar ok",
+  "status": 200,
+  "cuerpo": {
+   "ReservaID": 1,
+   "mensaje": "Reserva actualizada correctamente."
+  }
+ },
+ {
+  "nombre": "editar con venta",
+  "status": 409,
+  "cuerpo": {
+   "error": "Esta reserva tiene una venta asociada."
+  }
+ },
+ {
+  "nombre": "editar cantidad",
+  "status": 409,
+  "cuerpo": {
+   "error": "Debe conservarse la cantidad original de asientos."
+  }
+ },
+ {
+  "nombre": "editar intercambio",
+  "status": 409,
+  "cuerpo": {
+   "error": "Selecciona un asiento libre."
+  }
+ },
+ {
+  "nombre": "editar detalle ajeno",
+  "status": 409,
+  "cuerpo": {
+   "error": "Un detalle no pertenece a esta reserva."
+  }
+ },
+ {
+  "nombre": "reprogramar ok",
+  "status": 200,
+  "cuerpo": {
+   "ReservaID": 1,
+   "Codigo": "RSV-1",
+   "ViajeAnteriorID": 5,
+   "ViajeNuevoID": 7,
+   "Estado": "REPROGRAMADA",
+   "CantidadAsientos": 2,
+   "mensaje": "Reserva reprogramada correctamente."
+  }
+ },
+ {
+  "nombre": "reprogramar mismo viaje",
+  "status": 409,
+  "cuerpo": {
+   "error": "Selecciona un viaje diferente."
+  }
+ },
+ {
+  "nombre": "reprogramar otra ruta",
+  "status": 409,
+  "cuerpo": {
+   "error": "La reprogramación requiere la misma ruta."
+  }
+ },
+ {
+  "nombre": "reprogramar destino 404",
+  "status": 404,
+  "cuerpo": {
+   "error": "Viaje destino no encontrado."
+  }
+ },
+ {
+  "nombre": "reprogramar repetidos",
+  "status": 400,
+  "cuerpo": {
+   "error": "No se permiten reservaAsientoId repetidos."
+  }
+ },
+ {
+  "nombre": "ventas catálogos",
+  "status": 200,
+  "cuerpo": {
+   "reservas": [
+    {
+     "ReservaID": 1
+    }
+   ]
+  }
+ },
+ {
+  "nombre": "ventas listar",
+  "status": 200,
+  "cuerpo": [
+   {
+    "VentaID": 1,
+    "q": "%b%"
+   }
+  ]
+ },
+ {
+  "nombre": "venta detalle 404",
+  "status": 404,
+  "cuerpo": {
+   "error": "Venta no encontrada."
+  }
+ },
+ {
+  "nombre": "venta detalle",
+  "status": 200,
+  "cuerpo": {
+   "VentaID": 1,
+   "ReservaID": 1,
+   "pagos": [
+    {
+     "PagoID": 1
+    }
+   ],
+   "pasajeros": [
+    {
+     "ReservaAsientoID": 1
+    }
+   ]
+  }
+ },
+ {
+  "nombre": "venta inválida",
+  "status": 400,
+  "cuerpo": {
+   "error": "Invalid enum value. Expected 'EFECTIVO' | 'TARJETA' | 'TRANSFERENCIA' | 'OTRO', received 'BITCOIN'"
+  }
+ },
+ {
+  "nombre": "venta ok",
+  "status": 201,
+  "cuerpo": {
+   "VentaID": 41,
+   "PagoID": 1,
+   "CodigoComprobante": "B001-41",
+   "Total": 100,
+   "mensaje": "Venta, pago simulado y auditoría registrados correctamente."
+  }
+ },
+ {
+  "nombre": "venta reserva 404",
+  "status": 404,
+  "cuerpo": {
+   "error": "Reserva no encontrada."
+  }
+ },
+ {
+  "nombre": "venta ya existe",
+  "status": 409,
+  "cuerpo": {
+   "error": "Esta reserva ya tiene una venta registrada o anulada."
+  }
+ },
+ {
+  "nombre": "venta importe no cuadra",
+  "status": 409,
+  "cuerpo": {
+   "error": "El importe de la reserva no coincide con los asientos activos."
+  }
+ },
+ {
+  "nombre": "venta sin asientos",
+  "status": 409,
+  "cuerpo": {
+   "error": "La reserva no tiene asientos activos."
+  }
+ },
+ {
+  "nombre": "venta duplicado SQL",
+  "status": 409,
+  "cuerpo": {
+   "error": "Esta reserva ya tiene una venta o existe un registro duplicado."
+  }
+ },
+ {
+  "nombre": "anular ok",
+  "status": 200,
+  "cuerpo": {
+   "VentaID": 41,
+   "PagoID": 42,
+   "Estado": "ANULADA",
+   "EstadoPago": "ANULADO",
+   "mensaje": "Venta y pago simulados anulados correctamente. La auditoría fue registrada. Reserva y asientos sin cambios."
+  }
+ },
+ {
+  "nombre": "anular 404",
+  "status": 404,
+  "cuerpo": {
+   "error": "Venta no encontrada."
+  }
+ },
+ {
+  "nombre": "anular ya anulada",
+  "status": 409,
+  "cuerpo": {
+   "error": "Solo se pueden anular ventas REGISTRADAS."
+  }
+ },
+ {
+  "nombre": "anular dos pagos",
+  "status": 409,
+  "cuerpo": {
+   "error": "La venta debe tener exactamente un pago simulado para anularse."
+  }
+ },
+ {
+  "nombre": "anular monto distinto",
+  "status": 409,
+  "cuerpo": {
+   "error": "El importe del pago no coincide con la venta. Revisa la conciliación."
+  }
+ },
+ {
+  "nombre": "reportes catálogos",
+  "status": 200,
+  "cuerpo": {
+   "tipos": [
+    {
+     "valor": "reservas",
+     "nombre": "Reservas"
+    },
+    {
+     "valor": "ventas",
+     "nombre": "Ventas"
+    },
+    {
+     "valor": "viajes",
+     "nombre": "Viajes"
+    },
+    {
+     "valor": "ocupacion",
+     "nombre": "Ocupación de buses"
+    },
+    {
+     "valor": "reclamaciones",
+     "nombre": "Reclamaciones"
+    }
+   ]
+  }
+ },
+ {
+  "nombre": "reportes tipo inexistente",
+  "status": 404,
+  "cuerpo": {
+   "error": "El tipo de reporte no existe."
+  }
+ },
+ {
+  "nombre": "pagos id malo",
+  "status": 400,
+  "cuerpo": {
+   "error": "Identificador de pago inválido."
+  }
+ },
+ {
+  "nombre": "auditoría id malo",
+  "status": 400,
+  "cuerpo": {
+   "error": "El identificador de auditoría no es válido."
+  }
+ },
+ {
+  "nombre": "login correo inexistente",
+  "status": 401,
+  "cuerpo": {
+   "error": "Credenciales inválidas"
+  }
+ },
+ {
+  "nombre": "login cuenta inactiva clave mala",
+  "status": 401,
+  "cuerpo": {
+   "error": "Credenciales inválidas"
+  }
+ },
+ {
+  "nombre": "login cuenta inactiva",
+  "status": 403,
+  "cuerpo": {
+   "error": "Tu cuenta está desactivada. Comunícate con la empresa para reactivarla."
+  }
+ },
+ {
+  "nombre": "ventas: listar ventas",
+  "status": 200,
+  "cuerpo": [
+   {
+    "VentaID": 1,
+    "q": "%b%"
+   }
+  ]
+ },
+ {
+  "nombre": "ventas: reservas catálogos",
+  "status": 200,
+  "cuerpo": {
+   "viajes": [
+    {
+     "ViajeID": 5
+    }
+   ],
+   "pasajeros": [
+    {
+     "PasajeroID": 1
+    }
+   ]
+  }
+ },
+ {
+  "nombre": "ventas: crear reserva",
+  "status": 201,
+  "cuerpo": {
+   "ReservaID": 900,
+   "Codigo": "RSV-900",
+   "Total": 100,
+   "CantidadAsientos": 2,
+   "PoliticaID": 10,
+   "TotalAceptaciones": 5,
+   "mensaje": "Reserva registrada correctamente."
+  }
+ },
+ {
+  "nombre": "ventas: usuarios 403",
+  "status": 403,
+  "cuerpo": {
+   "error": "No autorizado"
+  }
+ },
+ {
+  "nombre": "ventas: terminales 403",
+  "status": 403,
+  "cuerpo": {
+   "error": "No autorizado"
+  }
+ },
+ {
+  "nombre": "operador: ventas 403",
+  "status": 403,
+  "cuerpo": {
+   "error": "No autorizado"
+  }
+ },
+ {
+  "nombre": "venta pago rechazado",
+  "status": 402,
+  "cuerpo": {
+   "error": "El pago simulado fue rechazado. La venta no se registró; puedes intentar con otro método de pago."
+  }
+ },
+ {
+  "nombre": "venta resultado inválido",
+  "status": 400,
+  "cuerpo": {
+   "error": "El resultado de la simulación debe ser APROBADO o RECHAZADO."
+  }
+ },
+ {
+  "nombre": "condiciones públicas",
+  "status": 200,
+  "cuerpo": [
+   {
+    "PoliticaID": 10,
+    "Tipo": "RESERVA",
+    "Titulo": "Política RESERVA",
+    "Contenido": "Contenido largo de la política RESERVA",
+    "Version": "1.0",
+    "VigenteDesde": "2026-01-01",
+    "VigenteHasta": null
+   },
+   {
+    "PoliticaID": 11,
+    "Tipo": "CANCELACION",
+    "Titulo": "Política CANCELACION",
+    "Contenido": "Contenido largo de la política CANCELACION",
+    "Version": "1.0",
+    "VigenteDesde": "2026-01-01",
+    "VigenteHasta": null
+   },
+   {
+    "PoliticaID": 12,
+    "Tipo": "REPROGRAMACION",
+    "Titulo": "Política REPROGRAMACION",
+    "Contenido": "Contenido largo de la política REPROGRAMACION",
+    "Version": "1.0",
+    "VigenteDesde": "2026-01-01",
+    "VigenteHasta": null
+   },
+   {
+    "PoliticaID": 13,
+    "Tipo": "CONTRATACION",
+    "Titulo": "Política CONTRATACION",
+    "Contenido": "Contenido largo de la política CONTRATACION",
+    "Version": "1.0",
+    "VigenteDesde": "2026-01-01",
+    "VigenteHasta": null
+   },
+   {
+    "PoliticaID": 14,
+    "Tipo": "PRIVACIDAD",
+    "Titulo": "Política PRIVACIDAD",
+    "Contenido": "Contenido largo de la política PRIVACIDAD",
+    "Version": "1.0",
+    "VigenteDesde": "2026-01-01",
+    "VigenteHasta": null
+   }
+  ]
+ },
+ {
+  "nombre": "reclamo público con sesión cliente",
+  "status": 201,
+  "cuerpo": {
+   "ReclamacionID": 31,
+   "NumeroCorrelativo": "REC-0000000031",
+   "TipoSolicitud": "RECLAMO",
+   "FechaRegistro": "f",
+   "Estado": "REGISTRADO",
+   "codigoPrivado": "<8chars>",
+   "mensaje": "Reclamación registrada correctamente. Guarde su código privado de consulta."
+  }
+ },
+ {
+  "nombre": "reclamo con sesión cliente: UsuarioID guardado",
+  "status": 0,
+  "cuerpo": 2
+ },
+ {
+  "nombre": "reclamo público con sesión admin",
+  "status": 201,
+  "cuerpo": {
+   "ReclamacionID": 31,
+   "NumeroCorrelativo": "REC-0000000031",
+   "TipoSolicitud": "RECLAMO",
+   "FechaRegistro": "f",
+   "Estado": "REGISTRADO",
+   "codigoPrivado": "<8chars>",
+   "mensaje": "Reclamación registrada correctamente. Guarde su código privado de consulta."
+  }
+ },
+ {
+  "nombre": "reclamo con sesión admin: UsuarioID guardado",
+  "status": 0,
+  "cuerpo": null
+ },
+ {
+  "nombre": "reclamo público token malo",
+  "status": 201,
+  "cuerpo": {
+   "ReclamacionID": 31,
+   "NumeroCorrelativo": "REC-0000000031",
+   "TipoSolicitud": "RECLAMO",
+   "FechaRegistro": "f",
+   "Estado": "REGISTRADO",
+   "codigoPrivado": "<8chars>",
+   "mensaje": "Reclamación registrada correctamente. Guarde su código privado de consulta."
+  }
+ },
+ {
+  "nombre": "mis reclamaciones",
+  "status": 200,
+  "cuerpo": [
+   {
+    "ReclamacionID": 31,
+    "NumeroCorrelativo": "REC-0000000031",
+    "Estado": "EN_ATENCION"
+   }
+  ]
+ },
+ {
+  "nombre": "mis reclamaciones sin sesión",
+  "status": 401,
+  "cuerpo": {
+   "error": "Autenticación requerida"
+  }
+ },
+ {
+  "nombre": "mis reclamaciones admin 403",
+  "status": 403,
+  "cuerpo": {
+   "error": "Disponible únicamente para clientes."
+  }
+ },
+ {
+  "nombre": "mi reclamación detalle",
+  "status": 200,
+  "cuerpo": {
+   "reclamacion": {
+    "ReclamacionID": 31,
+    "NumeroCorrelativo": "REC-0000000031",
+    "Estado": "EN_ATENCION"
+   },
+   "historial": [
+    {
+     "EstadoNuevo": "REGISTRADO"
+    },
+    {
+     "EstadoNuevo": "EN_ATENCION"
+    }
+   ],
+   "respuestas": []
+  }
+ },
+ {
+  "nombre": "mi reclamación ajena 404",
+  "status": 404,
+  "cuerpo": {
+   "error": "Reclamación no encontrada."
+  }
+ },
+ {
+  "nombre": "terminales listar",
+  "status": 200,
+  "cuerpo": [
+   {
+    "TerminalID": 1,
+    "Nombre": "Terminal Javier Prado",
+    "Ciudad": "LIMA",
+    "Direccion": "Av. Javier Prado 1155",
+    "Referencia": null,
+    "Telefono": null,
+    "Estado": "ACTIVO",
+    "RutasActivas": 2
+   }
+  ]
+ },
+ {
+  "nombre": "terminales cliente 403",
+  "status": 403,
+  "cuerpo": {
+   "error": "No autorizado"
+  }
+ },
+ {
+  "nombre": "terminal detalle",
+  "status": 200,
+  "cuerpo": {
+   "TerminalID": 1,
+   "Nombre": "Terminal Javier Prado",
+   "Ciudad": "LIMA",
+   "Estado": "ACTIVO",
+   "RutasActivas": 2
+  }
+ },
+ {
+  "nombre": "terminal detalle 404",
+  "status": 404,
+  "cuerpo": {
+   "error": "Terminal no encontrado."
+  }
+ },
+ {
+  "nombre": "terminal id malo",
+  "status": 400,
+  "cuerpo": {
+   "error": "Identificador de terminal inválido."
+  }
+ },
+ {
+  "nombre": "terminal crear",
+  "status": 201,
+  "cuerpo": {
+   "TerminalID": 12,
+   "mensaje": "Terminal registrado correctamente."
+  }
+ },
+ {
+  "nombre": "terminal crear duplicado",
+  "status": 409,
+  "cuerpo": {
+   "error": "Ya existe un terminal con ese nombre en esa ciudad."
+  }
+ },
+ {
+  "nombre": "terminal crear inválido",
+  "status": 400,
+  "cuerpo": {
+   "error": "El nombre del terminal debe tener al menos 3 caracteres."
+  }
+ },
+ {
+  "nombre": "terminal crear teléfono malo",
+  "status": 400,
+  "cuerpo": {
+   "error": "El teléfono no tiene un formato válido."
+  }
+ },
+ {
+  "nombre": "terminal editar",
+  "status": 200,
+  "cuerpo": {
+   "TerminalID": 2,
+   "mensaje": "Terminal actualizado correctamente."
+  }
+ },
+ {
+  "nombre": "terminal editar 404",
+  "status": 404,
+  "cuerpo": {
+   "error": "Terminal no encontrado."
+  }
+ },
+ {
+  "nombre": "terminal editar cambia ciudad con rutas",
+  "status": 409,
+  "cuerpo": {
+   "error": "No se puede cambiar la ciudad: hay rutas que usan este terminal."
+  }
+ },
+ {
+  "nombre": "terminal desactivar con rutas",
+  "status": 409,
+  "cuerpo": {
+   "error": "No se puede desactivar: hay rutas activas que usan este terminal."
+  }
+ },
+ {
+  "nombre": "terminal desactivar",
+  "status": 200,
+  "cuerpo": {
+   "TerminalID": 2,
+   "Estado": "INACTIVO",
+   "mensaje": "Estado del terminal actualizado."
+  }
+ },
+ {
+  "nombre": "terminal estado malo",
+  "status": 400,
+  "cuerpo": {
+   "error": "El estado debe ser ACTIVO o INACTIVO."
+  }
+ },
+ {
+  "nombre": "ruta desactivar con viajes",
+  "status": 409,
+  "cuerpo": {
+   "error": "No se puede desactivar: la ruta tiene 3 viaje(s) programado(s). Cancélalos o reprográmalos primero."
+  }
+ },
+ {
+  "nombre": "ruta desactivar",
+  "status": 200,
+  "cuerpo": {
+   "RutaID": 1,
+   "Estado": "INACTIVA",
+   "mensaje": "Estado de la ruta actualizado correctamente."
+  }
+ },
+ {
+  "nombre": "viaje licencia vencida",
+  "status": 409,
+  "cuerpo": {
+   "error": "La licencia del conductor venció o vence el 01/03/2030, antes de la salida del viaje. Actualiza su habilitación o elige otro conductor."
+  }
+ }
+]
